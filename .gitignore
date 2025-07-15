@@ -51,12 +51,12 @@ linux/testvector-generation/qemu-serial
 fpga/generator/IP
 fpga/generator/vivado.*
 fpga/generator/.Xil/*
-fpga/generator/WallyFPGA*
-fpga/generator/reports/
+#fpga/generator/WallyFPGA*
+ git statusfpga/generator/reports/
 fpga/generator/*.jou
 fpga/src/sdc/*
 fpga/src/sdc.tar.gz
-fpga/src/CopiedFiles_do_not_add_to_repo/*
+#fpga/src/CopiedFiles_do_not_add_to_repo/*
 fpga/generator/sim/imp-funcsim.v
 fpga/generator/sim/imp-timesim.sdf
 fpga/generator/sim/imp-timesim.v
@@ -64,8 +64,8 @@ fpga/generator/sim/syn-funcsim.v
 fpga/rvvidaemon/rvvidaemon
 fpga/zsbl/OBJ/*
 fpga/zsbl/bin/*
-fpga/src/boot.mem
-fpga/src/data.mem
+#fpga/src/boot.mem
+#fpga/src/data.mem
 
 # Synthesis
 synthDC/WORK

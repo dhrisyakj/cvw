@@ -1,0 +1,10 @@
+-------------------------------------
+| Tool Version : Vivado v.2024.1
+| Date         : Tue Jul 15 11:21:35 2025
+| Host         : sidharth-Alienware-Aurora-Ryzen-Edition
+| Design       : checkpoint_fpgaTop
+| Device       : xc7a100t-csg324-1--
+-------------------------------------
+
+For more information on clockInfo.txt clock routing debug file see https://support.xilinx.com/s/article/000035660?language=en_US
+

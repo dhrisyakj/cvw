@@ -1,0 +1,1289 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
+| Date         : Tue Jul 15 11:46:21 2025
+| Host         : sidharth-Alienware-Aurora-Ryzen-Edition running 64-bit Ubuntu 24.04.2 LTS
+| Command      : report_timing -max_paths 10 -nworst 10 -delay_type max -sort_by slack -file reports/imp_timing_WORST_10.rpt
+| Design       : fpgaTop
+| Device       : 7a100t-csg324
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -1.930ns  (required time - arrival time)
+  Source:                 ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i  {rise@0.000ns fall@6.000ns period=12.000ns})
+  Destination:            sysrst/U0/EXT_LPF/lpf_int_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            2.000ns  (clk_out3_mmcm rise@50.000ns - clk_pll_i rise@48.000ns)
+  Data Path Delay:        1.176ns  (logic 0.580ns (49.339%)  route 0.596ns (50.661%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        -2.575ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.357ns = ( 48.643 - 50.000 ) 
+    Source Clock Delay      (SCD):    1.613ns = ( 49.613 - 48.000 ) 
+    Clock Pessimism Removal (CPR):    0.395ns
+  Clock Uncertainty:      0.259ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.164ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                     48.000    48.000 r  
+    E3                                                0.000    48.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    48.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482    49.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233    50.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.070    43.645 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.719    45.364    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.096    45.460 r  mmcm/inst/clkout1_buf/O
+                         net (fo=1, routed)           1.666    47.126    ddr3/u_ddr3_mig/u_ddr3_infrastructure/mmcm_clk
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.088    47.214 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.281    48.495    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y12         BUFH (Prop_bufh_I_O)         0.127    48.622 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.841    49.463    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.457    46.007 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.719    47.726    ddr3/u_ddr3_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    47.822 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=6806, routed)        1.791    49.613    ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/CLK
+    SLICE_X53Y36         FDRE                                         r  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y36         FDRE (Prop_fdre_C_Q)         0.456    50.069 f  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/Q
+                         net (fo=3, routed)           0.596    50.665    sysrst/U0/EXT_LPF/dcm_locked
+    SLICE_X54Y36         LUT4 (Prop_lut4_I0_O)        0.124    50.789 r  sysrst/U0/EXT_LPF/lpf_int0/O
+                         net (fo=1, routed)           0.000    50.789    sysrst/U0/EXT_LPF/lpf_int0__0
+    SLICE_X54Y36         FDRE                                         r  sysrst/U0/EXT_LPF/lpf_int_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.664    48.643    sysrst/U0/EXT_LPF/slowest_sync_clk
+    SLICE_X54Y36         FDRE                                         r  sysrst/U0/EXT_LPF/lpf_int_reg/C
+                         clock pessimism              0.395    49.039    
+                         clock uncertainty           -0.259    48.780    
+    SLICE_X54Y36         FDRE (Setup_fdre_C_D)        0.079    48.859    sysrst/U0/EXT_LPF/lpf_int_reg
+  -------------------------------------------------------------------
+                         required time                         48.859    
+                         arrival time                         -50.789    
+  -------------------------------------------------------------------
+                         slack                                 -1.930    
+
+Slack (VIOLATED) :        -1.930ns  (required time - arrival time)
+  Source:                 ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i  {rise@0.000ns fall@6.000ns period=12.000ns})
+  Destination:            sysrst/U0/EXT_LPF/lpf_int_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            2.000ns  (clk_out3_mmcm rise@50.000ns - clk_pll_i rise@48.000ns)
+  Data Path Delay:        1.176ns  (logic 0.580ns (49.339%)  route 0.596ns (50.661%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        -2.575ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.357ns = ( 48.643 - 50.000 ) 
+    Source Clock Delay      (SCD):    1.613ns = ( 49.613 - 48.000 ) 
+    Clock Pessimism Removal (CPR):    0.395ns
+  Clock Uncertainty:      0.259ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.164ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                     48.000    48.000 r  
+    E3                                                0.000    48.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    48.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482    49.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233    50.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.070    43.645 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.719    45.364    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.096    45.460 r  mmcm/inst/clkout1_buf/O
+                         net (fo=1, routed)           1.666    47.126    ddr3/u_ddr3_mig/u_ddr3_infrastructure/mmcm_clk
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.088    47.214 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.281    48.495    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y12         BUFH (Prop_bufh_I_O)         0.127    48.622 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.841    49.463    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.457    46.007 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.719    47.726    ddr3/u_ddr3_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    47.822 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=6806, routed)        1.791    49.613    ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/CLK
+    SLICE_X53Y36         FDRE                                         r  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y36         FDRE (Prop_fdre_C_Q)         0.456    50.069 r  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/Q
+                         net (fo=3, routed)           0.596    50.665    sysrst/U0/EXT_LPF/dcm_locked
+    SLICE_X54Y36         LUT4 (Prop_lut4_I0_O)        0.124    50.789 f  sysrst/U0/EXT_LPF/lpf_int0/O
+                         net (fo=1, routed)           0.000    50.789    sysrst/U0/EXT_LPF/lpf_int0__0
+    SLICE_X54Y36         FDRE                                         f  sysrst/U0/EXT_LPF/lpf_int_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.664    48.643    sysrst/U0/EXT_LPF/slowest_sync_clk
+    SLICE_X54Y36         FDRE                                         r  sysrst/U0/EXT_LPF/lpf_int_reg/C
+                         clock pessimism              0.395    49.039    
+                         clock uncertainty           -0.259    48.780    
+    SLICE_X54Y36         FDRE (Setup_fdre_C_D)        0.079    48.859    sysrst/U0/EXT_LPF/lpf_int_reg
+  -------------------------------------------------------------------
+                         required time                         48.859    
+                         arrival time                         -50.789    
+  -------------------------------------------------------------------
+                         slack                                 -1.930    
+
+Slack (VIOLATED) :        -0.045ns  (required time - arrival time)
+  Source:                 ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i  {rise@0.000ns fall@6.000ns period=12.000ns})
+  Destination:            sysrst/U0/EXT_LPF/lpf_int_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Fast Process Corner)
+  Requirement:            2.000ns  (clk_out3_mmcm rise@50.000ns - clk_pll_i rise@48.000ns)
+  Data Path Delay:        0.469ns  (logic 0.231ns (49.302%)  route 0.238ns (50.698%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        -1.352ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.538ns = ( 49.462 - 50.000 ) 
+    Source Clock Delay      (SCD):    0.258ns = ( 48.258 - 48.000 ) 
+    Clock Pessimism Removal (CPR):    -0.557ns
+  Clock Uncertainty:      0.259ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.164ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                     48.000    48.000 r  
+    E3                                                0.000    48.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    48.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         0.438    48.438 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.480    48.918    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.163    45.755 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    46.298    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029    46.327 r  mmcm/inst/clkout1_buf/O
+                         net (fo=1, routed)           0.835    47.162    ddr3/u_ddr3_mig/u_ddr3_infrastructure/mmcm_clk
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.053    47.215 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           0.437    47.652    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y12         BUFH (Prop_bufh_I_O)         0.043    47.695 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.494    48.189    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -1.400    46.788 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           0.544    47.332    ddr3/u_ddr3_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    47.361 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=6806, routed)        0.897    48.258    ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/CLK
+    SLICE_X53Y36         FDRE                                         r  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y36         FDRE (Prop_fdre_C_Q)         0.175    48.433 f  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/Q
+                         net (fo=3, routed)           0.238    48.670    sysrst/U0/EXT_LPF/dcm_locked
+    SLICE_X54Y36         LUT4 (Prop_lut4_I0_O)        0.056    48.726 r  sysrst/U0/EXT_LPF/lpf_int0/O
+                         net (fo=1, routed)           0.000    48.726    sysrst/U0/EXT_LPF/lpf_int0__0
+    SLICE_X54Y36         FDRE                                         r  sysrst/U0/EXT_LPF/lpf_int_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         0.250    50.250 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440    50.690    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -2.379    48.311 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           0.499    48.810    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.026    48.836 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       0.626    49.462    sysrst/U0/EXT_LPF/slowest_sync_clk
+    SLICE_X54Y36         FDRE                                         r  sysrst/U0/EXT_LPF/lpf_int_reg/C
+                         clock pessimism             -0.557    48.906    
+                         clock uncertainty           -0.259    48.647    
+    SLICE_X54Y36         FDRE (Setup_fdre_C_D)        0.035    48.682    sysrst/U0/EXT_LPF/lpf_int_reg
+  -------------------------------------------------------------------
+                         required time                         48.682    
+                         arrival time                         -48.726    
+  -------------------------------------------------------------------
+                         slack                                 -0.045    
+
+Slack (VIOLATED) :        -0.045ns  (required time - arrival time)
+  Source:                 ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i  {rise@0.000ns fall@6.000ns period=12.000ns})
+  Destination:            sysrst/U0/EXT_LPF/lpf_int_reg/D
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Fast Process Corner)
+  Requirement:            2.000ns  (clk_out3_mmcm rise@50.000ns - clk_pll_i rise@48.000ns)
+  Data Path Delay:        0.469ns  (logic 0.231ns (49.302%)  route 0.238ns (50.698%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        -1.352ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.538ns = ( 49.462 - 50.000 ) 
+    Source Clock Delay      (SCD):    0.258ns = ( 48.258 - 48.000 ) 
+    Clock Pessimism Removal (CPR):    -0.557ns
+  Clock Uncertainty:      0.259ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.164ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                     48.000    48.000 r  
+    E3                                                0.000    48.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    48.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         0.438    48.438 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.480    48.918    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.163    45.755 r  mmcm/inst/mmcm_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.544    46.298    mmcm/inst/clk_out1_mmcm
+    BUFGCTRL_X0Y17       BUFG (Prop_bufg_I_O)         0.029    46.327 r  mmcm/inst/clkout1_buf/O
+                         net (fo=1, routed)           0.835    47.162    ddr3/u_ddr3_mig/u_ddr3_infrastructure/mmcm_clk
+    PLLE2_ADV_X1Y1       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.053    47.215 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           0.437    47.652    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y12         BUFH (Prop_bufh_I_O)         0.043    47.695 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.494    48.189    ddr3/u_ddr3_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -1.400    46.788 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           0.544    47.332    ddr3/u_ddr3_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    47.361 r  ddr3/u_ddr3_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=6806, routed)        0.897    48.258    ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/CLK
+    SLICE_X53Y36         FDRE                                         r  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y36         FDRE (Prop_fdre_C_Q)         0.175    48.433 r  ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/Q
+                         net (fo=3, routed)           0.238    48.670    sysrst/U0/EXT_LPF/dcm_locked
+    SLICE_X54Y36         LUT4 (Prop_lut4_I0_O)        0.056    48.726 f  sysrst/U0/EXT_LPF/lpf_int0/O
+                         net (fo=1, routed)           0.000    48.726    sysrst/U0/EXT_LPF/lpf_int0__0
+    SLICE_X54Y36         FDRE                                         f  sysrst/U0/EXT_LPF/lpf_int_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         0.250    50.250 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440    50.690    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -2.379    48.311 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           0.499    48.810    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.026    48.836 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       0.626    49.462    sysrst/U0/EXT_LPF/slowest_sync_clk
+    SLICE_X54Y36         FDRE                                         r  sysrst/U0/EXT_LPF/lpf_int_reg/C
+                         clock pessimism             -0.557    48.906    
+                         clock uncertainty           -0.259    48.647    
+    SLICE_X54Y36         FDRE (Setup_fdre_C_D)        0.035    48.682    sysrst/U0/EXT_LPF/lpf_int_reg
+  -------------------------------------------------------------------
+                         required time                         48.682    
+                         arrival time                         -48.726    
+  -------------------------------------------------------------------
+                         slack                                 -0.045    
+
+Slack (MET) :             0.201ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            50.000ns  (clk_out3_mmcm rise@50.000ns - clk_out3_mmcm rise@0.000ns)
+  Data Path Delay:        49.245ns  (logic 10.189ns (20.690%)  route 39.056ns (79.310%))
+  Logic Levels:           47  (CARRY4=9 LUT1=1 LUT2=2 LUT3=7 LUT4=5 LUT5=3 LUT6=18 MUXF7=2)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.411ns = ( 48.589 - 50.000 ) 
+    Source Clock Delay      (SCD):    -0.915ns
+    Clock Pessimism Removal (CPR):    0.480ns
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out3_mmcm rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.070    -4.355 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.719    -2.636    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.096    -2.540 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.625    -0.915    wallypipelinedsoc/core/lsu/AddressMReg/clk
+    SLICE_X52Y93         FDRE                                         r  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y93         FDRE (Prop_fdre_C_Q)         0.456    -0.459 f  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/Q
+                         net (fo=11, routed)          0.644     0.185    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrM[3]
+    SLICE_X51Y93         LUT1 (Prop_lut1_I0_O)        0.124     0.309 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2/O
+                         net (fo=1, routed)           0.000     0.309    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2_n_0
+    SLICE_X51Y93         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     0.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.859    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1_n_0
+    SLICE_X51Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.973 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.973    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1_n_0
+    SLICE_X51Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.087 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.087    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1_n_0
+    SLICE_X51Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.201 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.201    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1_n_0
+    SLICE_X51Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.315 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.315    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1_n_0
+    SLICE_X51Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.649 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[25]_INST_0_i_1/O[1]
+                         net (fo=2, routed)           0.881     2.530    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrIncrementM[23]
+    SLICE_X54Y98         LUT3 (Prop_lut3_I0_O)        0.303     2.833 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[23]_INST_0/O
+                         net (fo=2, routed)           1.172     4.005    wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IEUAdrExtM[23]
+    SLICE_X38Y98         LUT5 (Prop_lut5_I0_O)        0.124     4.129 r  wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IHAdrM[23]_INST_0/O
+                         net (fo=67, routed)          1.386     5.515    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/D[11]
+    SLICE_X46Y98         LUT6 (Prop_lut6_I5_O)        0.124     5.639 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22/O
+                         net (fo=1, routed)           0.000     5.639    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22_n_0
+    SLICE_X46Y98         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.538     6.177 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q_reg[1]_i_8/CO[2]
+                         net (fo=1, routed)           0.991     7.168    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/Match10
+    SLICE_X30Y105        LUT6 (Prop_lut6_I5_O)        0.310     7.478 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3/O
+                         net (fo=8, routed)           1.239     8.718    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3_n_0
+    SLICE_X30Y115        LUT6 (Prop_lut6_I0_O)        0.124     8.842 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_2/O
+                         net (fo=58, routed)          1.612    10.453    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/Matches[0]
+    SLICE_X9Y117         LUT4 (Prop_lut4_I3_O)        0.124    10.577 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/ram.RAM_reg_0_i_344/O
+                         net (fo=1, routed)           0.972    11.549    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/hptw.hptw_i_339_0
+    SLICE_X29Y120        LUT4 (Prop_lut4_I2_O)        0.124    11.673 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/ram.RAM_reg_0_i_101/O
+                         net (fo=2, routed)           1.192    12.865    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_72
+    SLICE_X40Y123        LUT6 (Prop_lut6_I4_O)        0.124    12.989 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_i_46/O
+                         net (fo=2, routed)           0.987    13.976    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_34
+    SLICE_X45Y132        LUT5 (Prop_lut5_I2_O)        0.124    14.100 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_i_8/O
+                         net (fo=62, routed)          0.981    15.081    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/STATUS_MPP_reg[0]_11
+    SLICE_X51Y134        LUT4 (Prop_lut4_I1_O)        0.124    15.205 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LoadMisalignedFaultM_INST_0_i_34/O
+                         net (fo=3, routed)           1.036    16.240    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_2
+    SLICE_X48Y132        LUT6 (Prop_lut6_I3_O)        0.124    16.364 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_12/O
+                         net (fo=6, routed)           0.901    17.266    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/FSM_onehot_CurrState_reg[3]_0
+    SLICE_X49Y120        LUT6 (Prop_lut6_I3_O)        0.124    17.390 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LSUHADDR[1]_INST_0_i_1/O
+                         net (fo=33, routed)          2.062    19.452    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/q_reg[2]_2
+    SLICE_X47Y76         LUT3 (Prop_lut3_I1_O)        0.118    19.570 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/i__i_9__3/O
+                         net (fo=74, routed)          1.137    20.707    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/bus.dcache.CacheCMOpM[3]
+    SLICE_X43Y66         LUT5 (Prop_lut5_I0_O)        0.326    21.033 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3/O
+                         net (fo=1, routed)           0.764    21.797    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3_n_0
+    SLICE_X39Y63         LUT6 (Prop_lut6_I5_O)        0.124    21.921 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_5__3/O
+                         net (fo=44, routed)          1.467    23.388    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/SelVictim
+    SLICE_X38Y39         LUT6 (Prop_lut6_I4_O)        0.124    23.512 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031/O
+                         net (fo=64, routed)          1.337    24.848    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031_n_0
+    SLICE_X38Y57         LUT2 (Prop_lut2_I0_O)        0.117    24.965 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_2871/O
+                         net (fo=1, routed)           0.669    25.635    wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ReadDataLineWay[3]_64[39]
+    SLICE_X37Y56         LUT6 (Prop_lut6_I1_O)        0.348    25.983 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ziccslm_align.align_i_934/O
+                         net (fo=1, routed)           1.292    27.274    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ReadDataLine[39]
+    SLICE_X36Y36         LUT6 (Prop_lut6_I5_O)        0.124    27.398 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363/O
+                         net (fo=1, routed)           0.000    27.398    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363_n_0
+    SLICE_X36Y36         MUXF7 (Prop_muxf7_I0_O)      0.238    27.636 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_81/O
+                         net (fo=5, routed)           0.828    28.464    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordM[39]
+    SLICE_X39Y38         LUT6 (Prop_lut6_I1_O)        0.298    28.762 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1/O
+                         net (fo=1, routed)           0.973    29.735    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1_n_0
+    SLICE_X39Y42         LUT6 (Prop_lut6_I5_O)        0.124    29.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0/O
+                         net (fo=2, routed)           0.789    30.648    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/DCacheReadDataWordSpillM[7]
+    SLICE_X40Y48         LUT6 (Prop_lut6_I0_O)        0.124    30.772 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_3__0/O
+                         net (fo=4, routed)           0.576    31.348    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianReadDataWordM[63]
+    SLICE_X41Y50         LUT6 (Prop_lut6_I0_O)        0.124    31.472 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[15]_i_3__0/O
+                         net (fo=4, routed)           0.693    32.164    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/subwordread/HalfwordM[15]
+    SLICE_X42Y51         LUT6 (Prop_lut6_I2_O)        0.124    32.288 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0/O
+                         net (fo=48, routed)          1.072    33.361    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0_n_0
+    SLICE_X40Y54         LUT4 (Prop_lut4_I3_O)        0.150    33.511 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[17]_i_1__1/O
+                         net (fo=7, routed)           0.937    34.447    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[15]_9
+    SLICE_X43Y57         LUT4 (Prop_lut4_I3_O)        0.326    34.773 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/lt_carry__1_i_8/O
+                         net (fo=1, routed)           0.000    34.773    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2_1[0]
+    SLICE_X43Y57         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.305 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    35.305    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1_n_0
+    SLICE_X43Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    35.419 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2/CO[3]
+                         net (fo=1, routed)           1.193    36.612    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[56]_i_9_1[0]
+    SLICE_X46Y55         LUT6 (Prop_lut6_I2_O)        0.124    36.736 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_14/O
+                         net (fo=72, routed)          1.093    37.829    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/amoalu/cmp__0
+    SLICE_X46Y50         LUT3 (Prop_lut3_I2_O)        0.124    37.953 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_9/O
+                         net (fo=1, routed)           0.000    37.953    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/data5[4]
+    SLICE_X46Y50         MUXF7 (Prop_muxf7_I1_O)      0.247    38.200 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4/O
+                         net (fo=1, routed)           0.408    38.607    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4_n_0
+    SLICE_X47Y50         LUT6 (Prop_lut6_I2_O)        0.298    38.905 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_2/O
+                         net (fo=9, routed)           0.859    39.765    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/IMAFWriteDataM[4]
+    SLICE_X50Y47         LUT2 (Prop_lut2_I1_O)        0.116    39.881 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5/O
+                         net (fo=2, routed)           0.835    40.715    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5_n_0
+    SLICE_X49Y47         LUT3 (Prop_lut3_I0_O)        0.356    41.071 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[44]_i_2__0/O
+                         net (fo=4, routed)           0.603    41.674    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianWriteDataM[20]
+    SLICE_X46Y45         LUT3 (Prop_lut3_I2_O)        0.321    41.995 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/ziccslm_align.align_i_181/O
+                         net (fo=4, routed)           0.715    42.710    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataM[20]
+    SLICE_X47Y45         LUT6 (Prop_lut6_I1_O)        0.355    43.065 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1/O
+                         net (fo=2, routed)           0.813    43.878    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1_n_0
+    SLICE_X46Y44         LUT3 (Prop_lut3_I2_O)        0.148    44.026 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[36]_INST_0/O
+                         net (fo=8, routed)           1.145    45.171    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/LSUWriteDataSpillM[36]
+    SLICE_X52Y42         LUT3 (Prop_lut3_I2_O)        0.354    45.525 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/ram.RAM_reg_0_i_60__1/O
+                         net (fo=4, routed)           2.805    48.330    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/p_1_in0_in[36]
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.609    48.589    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/clk
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/CLKBWRCLK
+                         clock pessimism              0.480    49.069    
+                         clock uncertainty           -0.094    48.975    
+    RAMB36_X2Y24         RAMB36E1 (Setup_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                     -0.443    48.532    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0
+  -------------------------------------------------------------------
+                         required time                         48.532    
+                         arrival time                         -48.330    
+  -------------------------------------------------------------------
+                         slack                                  0.201    
+
+Slack (MET) :             0.201ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            50.000ns  (clk_out3_mmcm rise@50.000ns - clk_out3_mmcm rise@0.000ns)
+  Data Path Delay:        49.245ns  (logic 10.189ns (20.690%)  route 39.056ns (79.310%))
+  Logic Levels:           47  (CARRY4=9 LUT1=1 LUT2=2 LUT3=7 LUT4=5 LUT5=3 LUT6=18 MUXF7=2)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.411ns = ( 48.589 - 50.000 ) 
+    Source Clock Delay      (SCD):    -0.915ns
+    Clock Pessimism Removal (CPR):    0.480ns
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out3_mmcm rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.070    -4.355 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.719    -2.636    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.096    -2.540 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.625    -0.915    wallypipelinedsoc/core/lsu/AddressMReg/clk
+    SLICE_X52Y93         FDRE                                         r  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y93         FDRE (Prop_fdre_C_Q)         0.456    -0.459 f  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/Q
+                         net (fo=11, routed)          0.644     0.185    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrM[3]
+    SLICE_X51Y93         LUT1 (Prop_lut1_I0_O)        0.124     0.309 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2/O
+                         net (fo=1, routed)           0.000     0.309    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2_n_0
+    SLICE_X51Y93         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     0.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.859    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1_n_0
+    SLICE_X51Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.973 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.973    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1_n_0
+    SLICE_X51Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.087 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.087    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1_n_0
+    SLICE_X51Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.201 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.201    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1_n_0
+    SLICE_X51Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.315 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.315    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1_n_0
+    SLICE_X51Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.649 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[25]_INST_0_i_1/O[1]
+                         net (fo=2, routed)           0.881     2.530    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrIncrementM[23]
+    SLICE_X54Y98         LUT3 (Prop_lut3_I0_O)        0.303     2.833 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[23]_INST_0/O
+                         net (fo=2, routed)           1.172     4.005    wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IEUAdrExtM[23]
+    SLICE_X38Y98         LUT5 (Prop_lut5_I0_O)        0.124     4.129 r  wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IHAdrM[23]_INST_0/O
+                         net (fo=67, routed)          1.386     5.515    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/D[11]
+    SLICE_X46Y98         LUT6 (Prop_lut6_I5_O)        0.124     5.639 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22/O
+                         net (fo=1, routed)           0.000     5.639    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22_n_0
+    SLICE_X46Y98         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.538     6.177 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q_reg[1]_i_8/CO[2]
+                         net (fo=1, routed)           0.991     7.168    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/Match10
+    SLICE_X30Y105        LUT6 (Prop_lut6_I5_O)        0.310     7.478 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3/O
+                         net (fo=8, routed)           1.239     8.718    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3_n_0
+    SLICE_X30Y115        LUT6 (Prop_lut6_I0_O)        0.124     8.842 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_2/O
+                         net (fo=58, routed)          1.612    10.453    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/Matches[0]
+    SLICE_X9Y117         LUT4 (Prop_lut4_I3_O)        0.124    10.577 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/ram.RAM_reg_0_i_344/O
+                         net (fo=1, routed)           0.972    11.549    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/hptw.hptw_i_339_0
+    SLICE_X29Y120        LUT4 (Prop_lut4_I2_O)        0.124    11.673 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/ram.RAM_reg_0_i_101/O
+                         net (fo=2, routed)           1.192    12.865    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_72
+    SLICE_X40Y123        LUT6 (Prop_lut6_I4_O)        0.124    12.989 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_i_46/O
+                         net (fo=2, routed)           0.987    13.976    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_34
+    SLICE_X45Y132        LUT5 (Prop_lut5_I2_O)        0.124    14.100 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_i_8/O
+                         net (fo=62, routed)          0.981    15.081    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/STATUS_MPP_reg[0]_11
+    SLICE_X51Y134        LUT4 (Prop_lut4_I1_O)        0.124    15.205 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LoadMisalignedFaultM_INST_0_i_34/O
+                         net (fo=3, routed)           1.036    16.240    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_2
+    SLICE_X48Y132        LUT6 (Prop_lut6_I3_O)        0.124    16.364 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_12/O
+                         net (fo=6, routed)           0.901    17.266    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/FSM_onehot_CurrState_reg[3]_0
+    SLICE_X49Y120        LUT6 (Prop_lut6_I3_O)        0.124    17.390 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LSUHADDR[1]_INST_0_i_1/O
+                         net (fo=33, routed)          2.062    19.452    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/q_reg[2]_2
+    SLICE_X47Y76         LUT3 (Prop_lut3_I1_O)        0.118    19.570 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/i__i_9__3/O
+                         net (fo=74, routed)          1.137    20.707    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/bus.dcache.CacheCMOpM[3]
+    SLICE_X43Y66         LUT5 (Prop_lut5_I0_O)        0.326    21.033 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3/O
+                         net (fo=1, routed)           0.764    21.797    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3_n_0
+    SLICE_X39Y63         LUT6 (Prop_lut6_I5_O)        0.124    21.921 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_5__3/O
+                         net (fo=44, routed)          1.467    23.388    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/SelVictim
+    SLICE_X38Y39         LUT6 (Prop_lut6_I4_O)        0.124    23.512 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031/O
+                         net (fo=64, routed)          1.337    24.848    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031_n_0
+    SLICE_X38Y57         LUT2 (Prop_lut2_I0_O)        0.117    24.965 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_2871/O
+                         net (fo=1, routed)           0.669    25.635    wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ReadDataLineWay[3]_64[39]
+    SLICE_X37Y56         LUT6 (Prop_lut6_I1_O)        0.348    25.983 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ziccslm_align.align_i_934/O
+                         net (fo=1, routed)           1.292    27.274    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ReadDataLine[39]
+    SLICE_X36Y36         LUT6 (Prop_lut6_I5_O)        0.124    27.398 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363/O
+                         net (fo=1, routed)           0.000    27.398    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363_n_0
+    SLICE_X36Y36         MUXF7 (Prop_muxf7_I0_O)      0.238    27.636 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_81/O
+                         net (fo=5, routed)           0.828    28.464    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordM[39]
+    SLICE_X39Y38         LUT6 (Prop_lut6_I1_O)        0.298    28.762 f  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1/O
+                         net (fo=1, routed)           0.973    29.735    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1_n_0
+    SLICE_X39Y42         LUT6 (Prop_lut6_I5_O)        0.124    29.859 f  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0/O
+                         net (fo=2, routed)           0.789    30.648    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/DCacheReadDataWordSpillM[7]
+    SLICE_X40Y48         LUT6 (Prop_lut6_I0_O)        0.124    30.772 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_3__0/O
+                         net (fo=4, routed)           0.576    31.348    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianReadDataWordM[63]
+    SLICE_X41Y50         LUT6 (Prop_lut6_I0_O)        0.124    31.472 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[15]_i_3__0/O
+                         net (fo=4, routed)           0.693    32.164    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/subwordread/HalfwordM[15]
+    SLICE_X42Y51         LUT6 (Prop_lut6_I2_O)        0.124    32.288 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0/O
+                         net (fo=48, routed)          1.072    33.361    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0_n_0
+    SLICE_X40Y54         LUT4 (Prop_lut4_I3_O)        0.150    33.511 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[17]_i_1__1/O
+                         net (fo=7, routed)           0.937    34.447    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[15]_9
+    SLICE_X43Y57         LUT4 (Prop_lut4_I3_O)        0.326    34.773 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/lt_carry__1_i_8/O
+                         net (fo=1, routed)           0.000    34.773    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2_1[0]
+    SLICE_X43Y57         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.305 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    35.305    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1_n_0
+    SLICE_X43Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    35.419 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2/CO[3]
+                         net (fo=1, routed)           1.193    36.612    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[56]_i_9_1[0]
+    SLICE_X46Y55         LUT6 (Prop_lut6_I2_O)        0.124    36.736 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_14/O
+                         net (fo=72, routed)          1.093    37.829    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/amoalu/cmp__0
+    SLICE_X46Y50         LUT3 (Prop_lut3_I2_O)        0.124    37.953 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_9/O
+                         net (fo=1, routed)           0.000    37.953    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/data5[4]
+    SLICE_X46Y50         MUXF7 (Prop_muxf7_I1_O)      0.247    38.200 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4/O
+                         net (fo=1, routed)           0.408    38.607    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4_n_0
+    SLICE_X47Y50         LUT6 (Prop_lut6_I2_O)        0.298    38.905 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_2/O
+                         net (fo=9, routed)           0.859    39.765    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/IMAFWriteDataM[4]
+    SLICE_X50Y47         LUT2 (Prop_lut2_I1_O)        0.116    39.881 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5/O
+                         net (fo=2, routed)           0.835    40.715    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5_n_0
+    SLICE_X49Y47         LUT3 (Prop_lut3_I0_O)        0.356    41.071 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[44]_i_2__0/O
+                         net (fo=4, routed)           0.603    41.674    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianWriteDataM[20]
+    SLICE_X46Y45         LUT3 (Prop_lut3_I2_O)        0.321    41.995 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/ziccslm_align.align_i_181/O
+                         net (fo=4, routed)           0.715    42.710    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataM[20]
+    SLICE_X47Y45         LUT6 (Prop_lut6_I1_O)        0.355    43.065 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1/O
+                         net (fo=2, routed)           0.813    43.878    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1_n_0
+    SLICE_X46Y44         LUT3 (Prop_lut3_I2_O)        0.148    44.026 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[36]_INST_0/O
+                         net (fo=8, routed)           1.145    45.171    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/LSUWriteDataSpillM[36]
+    SLICE_X52Y42         LUT3 (Prop_lut3_I2_O)        0.354    45.525 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/ram.RAM_reg_0_i_60__1/O
+                         net (fo=4, routed)           2.805    48.330    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/p_1_in0_in[36]
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.609    48.589    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/clk
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/CLKBWRCLK
+                         clock pessimism              0.480    49.069    
+                         clock uncertainty           -0.094    48.975    
+    RAMB36_X2Y24         RAMB36E1 (Setup_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                     -0.443    48.532    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0
+  -------------------------------------------------------------------
+                         required time                         48.532    
+                         arrival time                         -48.330    
+  -------------------------------------------------------------------
+                         slack                                  0.201    
+
+Slack (MET) :             0.201ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            50.000ns  (clk_out3_mmcm rise@50.000ns - clk_out3_mmcm rise@0.000ns)
+  Data Path Delay:        49.245ns  (logic 10.189ns (20.690%)  route 39.056ns (79.310%))
+  Logic Levels:           47  (CARRY4=9 LUT1=1 LUT2=2 LUT3=7 LUT4=5 LUT5=3 LUT6=18 MUXF7=2)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.411ns = ( 48.589 - 50.000 ) 
+    Source Clock Delay      (SCD):    -0.915ns
+    Clock Pessimism Removal (CPR):    0.480ns
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out3_mmcm rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.070    -4.355 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.719    -2.636    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.096    -2.540 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.625    -0.915    wallypipelinedsoc/core/lsu/AddressMReg/clk
+    SLICE_X52Y93         FDRE                                         r  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y93         FDRE (Prop_fdre_C_Q)         0.456    -0.459 f  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/Q
+                         net (fo=11, routed)          0.644     0.185    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrM[3]
+    SLICE_X51Y93         LUT1 (Prop_lut1_I0_O)        0.124     0.309 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2/O
+                         net (fo=1, routed)           0.000     0.309    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2_n_0
+    SLICE_X51Y93         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     0.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.859    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1_n_0
+    SLICE_X51Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.973 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.973    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1_n_0
+    SLICE_X51Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.087 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.087    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1_n_0
+    SLICE_X51Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.201 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.201    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1_n_0
+    SLICE_X51Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.315 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.315    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1_n_0
+    SLICE_X51Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.649 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[25]_INST_0_i_1/O[1]
+                         net (fo=2, routed)           0.881     2.530    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrIncrementM[23]
+    SLICE_X54Y98         LUT3 (Prop_lut3_I0_O)        0.303     2.833 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[23]_INST_0/O
+                         net (fo=2, routed)           1.172     4.005    wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IEUAdrExtM[23]
+    SLICE_X38Y98         LUT5 (Prop_lut5_I0_O)        0.124     4.129 r  wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IHAdrM[23]_INST_0/O
+                         net (fo=67, routed)          1.386     5.515    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/D[11]
+    SLICE_X46Y98         LUT6 (Prop_lut6_I5_O)        0.124     5.639 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22/O
+                         net (fo=1, routed)           0.000     5.639    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22_n_0
+    SLICE_X46Y98         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.538     6.177 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q_reg[1]_i_8/CO[2]
+                         net (fo=1, routed)           0.991     7.168    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/Match10
+    SLICE_X30Y105        LUT6 (Prop_lut6_I5_O)        0.310     7.478 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3/O
+                         net (fo=8, routed)           1.239     8.718    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3_n_0
+    SLICE_X30Y115        LUT6 (Prop_lut6_I0_O)        0.124     8.842 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_2/O
+                         net (fo=58, routed)          1.612    10.453    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/Matches[0]
+    SLICE_X9Y117         LUT4 (Prop_lut4_I3_O)        0.124    10.577 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/ram.RAM_reg_0_i_344/O
+                         net (fo=1, routed)           0.972    11.549    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/hptw.hptw_i_339_0
+    SLICE_X29Y120        LUT4 (Prop_lut4_I2_O)        0.124    11.673 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/ram.RAM_reg_0_i_101/O
+                         net (fo=2, routed)           1.192    12.865    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_72
+    SLICE_X40Y123        LUT6 (Prop_lut6_I4_O)        0.124    12.989 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_i_46/O
+                         net (fo=2, routed)           0.987    13.976    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_34
+    SLICE_X45Y132        LUT5 (Prop_lut5_I2_O)        0.124    14.100 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_i_8/O
+                         net (fo=62, routed)          0.981    15.081    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/STATUS_MPP_reg[0]_11
+    SLICE_X51Y134        LUT4 (Prop_lut4_I1_O)        0.124    15.205 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LoadMisalignedFaultM_INST_0_i_34/O
+                         net (fo=3, routed)           1.036    16.240    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_2
+    SLICE_X48Y132        LUT6 (Prop_lut6_I3_O)        0.124    16.364 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_12/O
+                         net (fo=6, routed)           0.901    17.266    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/FSM_onehot_CurrState_reg[3]_0
+    SLICE_X49Y120        LUT6 (Prop_lut6_I3_O)        0.124    17.390 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LSUHADDR[1]_INST_0_i_1/O
+                         net (fo=33, routed)          2.062    19.452    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/q_reg[2]_2
+    SLICE_X47Y76         LUT3 (Prop_lut3_I1_O)        0.118    19.570 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/i__i_9__3/O
+                         net (fo=74, routed)          1.137    20.707    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/bus.dcache.CacheCMOpM[3]
+    SLICE_X43Y66         LUT5 (Prop_lut5_I0_O)        0.326    21.033 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3/O
+                         net (fo=1, routed)           0.764    21.797    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3_n_0
+    SLICE_X39Y63         LUT6 (Prop_lut6_I5_O)        0.124    21.921 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_5__3/O
+                         net (fo=44, routed)          1.467    23.388    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/SelVictim
+    SLICE_X38Y39         LUT6 (Prop_lut6_I4_O)        0.124    23.512 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031/O
+                         net (fo=64, routed)          1.337    24.848    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031_n_0
+    SLICE_X38Y57         LUT2 (Prop_lut2_I0_O)        0.117    24.965 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_2871/O
+                         net (fo=1, routed)           0.669    25.635    wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ReadDataLineWay[3]_64[39]
+    SLICE_X37Y56         LUT6 (Prop_lut6_I1_O)        0.348    25.983 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ziccslm_align.align_i_934/O
+                         net (fo=1, routed)           1.292    27.274    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ReadDataLine[39]
+    SLICE_X36Y36         LUT6 (Prop_lut6_I5_O)        0.124    27.398 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363/O
+                         net (fo=1, routed)           0.000    27.398    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363_n_0
+    SLICE_X36Y36         MUXF7 (Prop_muxf7_I0_O)      0.238    27.636 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_81/O
+                         net (fo=5, routed)           0.828    28.464    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordM[39]
+    SLICE_X39Y38         LUT6 (Prop_lut6_I1_O)        0.298    28.762 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1/O
+                         net (fo=1, routed)           0.973    29.735    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1_n_0
+    SLICE_X39Y42         LUT6 (Prop_lut6_I5_O)        0.124    29.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0/O
+                         net (fo=2, routed)           0.789    30.648    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/DCacheReadDataWordSpillM[7]
+    SLICE_X40Y48         LUT6 (Prop_lut6_I0_O)        0.124    30.772 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_3__0/O
+                         net (fo=4, routed)           0.576    31.348    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianReadDataWordM[63]
+    SLICE_X41Y50         LUT6 (Prop_lut6_I0_O)        0.124    31.472 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[15]_i_3__0/O
+                         net (fo=4, routed)           0.693    32.164    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/subwordread/HalfwordM[15]
+    SLICE_X42Y51         LUT6 (Prop_lut6_I2_O)        0.124    32.288 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0/O
+                         net (fo=48, routed)          1.072    33.361    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0_n_0
+    SLICE_X40Y54         LUT4 (Prop_lut4_I3_O)        0.150    33.511 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[17]_i_1__1/O
+                         net (fo=7, routed)           0.937    34.447    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[15]_9
+    SLICE_X43Y57         LUT4 (Prop_lut4_I3_O)        0.326    34.773 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/lt_carry__1_i_8/O
+                         net (fo=1, routed)           0.000    34.773    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2_1[0]
+    SLICE_X43Y57         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.305 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    35.305    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1_n_0
+    SLICE_X43Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    35.419 f  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2/CO[3]
+                         net (fo=1, routed)           1.193    36.612    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[56]_i_9_1[0]
+    SLICE_X46Y55         LUT6 (Prop_lut6_I2_O)        0.124    36.736 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_14/O
+                         net (fo=72, routed)          1.093    37.829    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/amoalu/cmp__0
+    SLICE_X46Y50         LUT3 (Prop_lut3_I2_O)        0.124    37.953 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_9/O
+                         net (fo=1, routed)           0.000    37.953    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/data5[4]
+    SLICE_X46Y50         MUXF7 (Prop_muxf7_I1_O)      0.247    38.200 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4/O
+                         net (fo=1, routed)           0.408    38.607    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4_n_0
+    SLICE_X47Y50         LUT6 (Prop_lut6_I2_O)        0.298    38.905 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_2/O
+                         net (fo=9, routed)           0.859    39.765    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/IMAFWriteDataM[4]
+    SLICE_X50Y47         LUT2 (Prop_lut2_I1_O)        0.116    39.881 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5/O
+                         net (fo=2, routed)           0.835    40.715    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5_n_0
+    SLICE_X49Y47         LUT3 (Prop_lut3_I0_O)        0.356    41.071 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[44]_i_2__0/O
+                         net (fo=4, routed)           0.603    41.674    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianWriteDataM[20]
+    SLICE_X46Y45         LUT3 (Prop_lut3_I2_O)        0.321    41.995 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/ziccslm_align.align_i_181/O
+                         net (fo=4, routed)           0.715    42.710    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataM[20]
+    SLICE_X47Y45         LUT6 (Prop_lut6_I1_O)        0.355    43.065 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1/O
+                         net (fo=2, routed)           0.813    43.878    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1_n_0
+    SLICE_X46Y44         LUT3 (Prop_lut3_I2_O)        0.148    44.026 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[36]_INST_0/O
+                         net (fo=8, routed)           1.145    45.171    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/LSUWriteDataSpillM[36]
+    SLICE_X52Y42         LUT3 (Prop_lut3_I2_O)        0.354    45.525 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/ram.RAM_reg_0_i_60__1/O
+                         net (fo=4, routed)           2.805    48.330    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/p_1_in0_in[36]
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.609    48.589    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/clk
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/CLKBWRCLK
+                         clock pessimism              0.480    49.069    
+                         clock uncertainty           -0.094    48.975    
+    RAMB36_X2Y24         RAMB36E1 (Setup_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                     -0.443    48.532    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0
+  -------------------------------------------------------------------
+                         required time                         48.532    
+                         arrival time                         -48.330    
+  -------------------------------------------------------------------
+                         slack                                  0.201    
+
+Slack (MET) :             0.201ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            50.000ns  (clk_out3_mmcm rise@50.000ns - clk_out3_mmcm rise@0.000ns)
+  Data Path Delay:        49.245ns  (logic 10.189ns (20.690%)  route 39.056ns (79.310%))
+  Logic Levels:           47  (CARRY4=9 LUT1=1 LUT2=2 LUT3=7 LUT4=5 LUT5=3 LUT6=18 MUXF7=2)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.411ns = ( 48.589 - 50.000 ) 
+    Source Clock Delay      (SCD):    -0.915ns
+    Clock Pessimism Removal (CPR):    0.480ns
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out3_mmcm rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.070    -4.355 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.719    -2.636    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.096    -2.540 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.625    -0.915    wallypipelinedsoc/core/lsu/AddressMReg/clk
+    SLICE_X52Y93         FDRE                                         r  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y93         FDRE (Prop_fdre_C_Q)         0.456    -0.459 f  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/Q
+                         net (fo=11, routed)          0.644     0.185    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrM[3]
+    SLICE_X51Y93         LUT1 (Prop_lut1_I0_O)        0.124     0.309 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2/O
+                         net (fo=1, routed)           0.000     0.309    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2_n_0
+    SLICE_X51Y93         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     0.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.859    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1_n_0
+    SLICE_X51Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.973 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.973    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1_n_0
+    SLICE_X51Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.087 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.087    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1_n_0
+    SLICE_X51Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.201 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.201    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1_n_0
+    SLICE_X51Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.315 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.315    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1_n_0
+    SLICE_X51Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.649 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[25]_INST_0_i_1/O[1]
+                         net (fo=2, routed)           0.881     2.530    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrIncrementM[23]
+    SLICE_X54Y98         LUT3 (Prop_lut3_I0_O)        0.303     2.833 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[23]_INST_0/O
+                         net (fo=2, routed)           1.172     4.005    wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IEUAdrExtM[23]
+    SLICE_X38Y98         LUT5 (Prop_lut5_I0_O)        0.124     4.129 r  wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IHAdrM[23]_INST_0/O
+                         net (fo=67, routed)          1.386     5.515    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/D[11]
+    SLICE_X46Y98         LUT6 (Prop_lut6_I5_O)        0.124     5.639 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22/O
+                         net (fo=1, routed)           0.000     5.639    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22_n_0
+    SLICE_X46Y98         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.538     6.177 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q_reg[1]_i_8/CO[2]
+                         net (fo=1, routed)           0.991     7.168    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/Match10
+    SLICE_X30Y105        LUT6 (Prop_lut6_I5_O)        0.310     7.478 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3/O
+                         net (fo=8, routed)           1.239     8.718    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3_n_0
+    SLICE_X30Y115        LUT6 (Prop_lut6_I0_O)        0.124     8.842 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_2/O
+                         net (fo=58, routed)          1.612    10.453    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/Matches[0]
+    SLICE_X9Y117         LUT4 (Prop_lut4_I3_O)        0.124    10.577 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/ram.RAM_reg_0_i_344/O
+                         net (fo=1, routed)           0.972    11.549    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/hptw.hptw_i_339_0
+    SLICE_X29Y120        LUT4 (Prop_lut4_I2_O)        0.124    11.673 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/ram.RAM_reg_0_i_101/O
+                         net (fo=2, routed)           1.192    12.865    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_72
+    SLICE_X40Y123        LUT6 (Prop_lut6_I4_O)        0.124    12.989 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_i_46/O
+                         net (fo=2, routed)           0.987    13.976    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_34
+    SLICE_X45Y132        LUT5 (Prop_lut5_I2_O)        0.124    14.100 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_i_8/O
+                         net (fo=62, routed)          0.981    15.081    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/STATUS_MPP_reg[0]_11
+    SLICE_X51Y134        LUT4 (Prop_lut4_I1_O)        0.124    15.205 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LoadMisalignedFaultM_INST_0_i_34/O
+                         net (fo=3, routed)           1.036    16.240    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_2
+    SLICE_X48Y132        LUT6 (Prop_lut6_I3_O)        0.124    16.364 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_12/O
+                         net (fo=6, routed)           0.901    17.266    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/FSM_onehot_CurrState_reg[3]_0
+    SLICE_X49Y120        LUT6 (Prop_lut6_I3_O)        0.124    17.390 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LSUHADDR[1]_INST_0_i_1/O
+                         net (fo=33, routed)          2.062    19.452    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/q_reg[2]_2
+    SLICE_X47Y76         LUT3 (Prop_lut3_I1_O)        0.118    19.570 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/i__i_9__3/O
+                         net (fo=74, routed)          1.137    20.707    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/bus.dcache.CacheCMOpM[3]
+    SLICE_X43Y66         LUT5 (Prop_lut5_I0_O)        0.326    21.033 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3/O
+                         net (fo=1, routed)           0.764    21.797    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3_n_0
+    SLICE_X39Y63         LUT6 (Prop_lut6_I5_O)        0.124    21.921 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_5__3/O
+                         net (fo=44, routed)          1.467    23.388    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/SelVictim
+    SLICE_X38Y39         LUT6 (Prop_lut6_I4_O)        0.124    23.512 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031/O
+                         net (fo=64, routed)          1.337    24.848    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031_n_0
+    SLICE_X38Y57         LUT2 (Prop_lut2_I0_O)        0.117    24.965 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_2871/O
+                         net (fo=1, routed)           0.669    25.635    wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ReadDataLineWay[3]_64[39]
+    SLICE_X37Y56         LUT6 (Prop_lut6_I1_O)        0.348    25.983 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ziccslm_align.align_i_934/O
+                         net (fo=1, routed)           1.292    27.274    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ReadDataLine[39]
+    SLICE_X36Y36         LUT6 (Prop_lut6_I5_O)        0.124    27.398 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363/O
+                         net (fo=1, routed)           0.000    27.398    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363_n_0
+    SLICE_X36Y36         MUXF7 (Prop_muxf7_I0_O)      0.238    27.636 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_81/O
+                         net (fo=5, routed)           0.828    28.464    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordM[39]
+    SLICE_X39Y38         LUT6 (Prop_lut6_I1_O)        0.298    28.762 f  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1/O
+                         net (fo=1, routed)           0.973    29.735    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1_n_0
+    SLICE_X39Y42         LUT6 (Prop_lut6_I5_O)        0.124    29.859 f  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0/O
+                         net (fo=2, routed)           0.789    30.648    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/DCacheReadDataWordSpillM[7]
+    SLICE_X40Y48         LUT6 (Prop_lut6_I0_O)        0.124    30.772 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_3__0/O
+                         net (fo=4, routed)           0.576    31.348    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianReadDataWordM[63]
+    SLICE_X41Y50         LUT6 (Prop_lut6_I0_O)        0.124    31.472 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[15]_i_3__0/O
+                         net (fo=4, routed)           0.693    32.164    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/subwordread/HalfwordM[15]
+    SLICE_X42Y51         LUT6 (Prop_lut6_I2_O)        0.124    32.288 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0/O
+                         net (fo=48, routed)          1.072    33.361    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0_n_0
+    SLICE_X40Y54         LUT4 (Prop_lut4_I3_O)        0.150    33.511 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[17]_i_1__1/O
+                         net (fo=7, routed)           0.937    34.447    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[15]_9
+    SLICE_X43Y57         LUT4 (Prop_lut4_I3_O)        0.326    34.773 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/lt_carry__1_i_8/O
+                         net (fo=1, routed)           0.000    34.773    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2_1[0]
+    SLICE_X43Y57         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.305 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    35.305    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1_n_0
+    SLICE_X43Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    35.419 f  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2/CO[3]
+                         net (fo=1, routed)           1.193    36.612    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[56]_i_9_1[0]
+    SLICE_X46Y55         LUT6 (Prop_lut6_I2_O)        0.124    36.736 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_14/O
+                         net (fo=72, routed)          1.093    37.829    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/amoalu/cmp__0
+    SLICE_X46Y50         LUT3 (Prop_lut3_I2_O)        0.124    37.953 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_9/O
+                         net (fo=1, routed)           0.000    37.953    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/data5[4]
+    SLICE_X46Y50         MUXF7 (Prop_muxf7_I1_O)      0.247    38.200 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4/O
+                         net (fo=1, routed)           0.408    38.607    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4_n_0
+    SLICE_X47Y50         LUT6 (Prop_lut6_I2_O)        0.298    38.905 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_2/O
+                         net (fo=9, routed)           0.859    39.765    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/IMAFWriteDataM[4]
+    SLICE_X50Y47         LUT2 (Prop_lut2_I1_O)        0.116    39.881 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5/O
+                         net (fo=2, routed)           0.835    40.715    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5_n_0
+    SLICE_X49Y47         LUT3 (Prop_lut3_I0_O)        0.356    41.071 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[44]_i_2__0/O
+                         net (fo=4, routed)           0.603    41.674    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianWriteDataM[20]
+    SLICE_X46Y45         LUT3 (Prop_lut3_I2_O)        0.321    41.995 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/ziccslm_align.align_i_181/O
+                         net (fo=4, routed)           0.715    42.710    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataM[20]
+    SLICE_X47Y45         LUT6 (Prop_lut6_I1_O)        0.355    43.065 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1/O
+                         net (fo=2, routed)           0.813    43.878    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1_n_0
+    SLICE_X46Y44         LUT3 (Prop_lut3_I2_O)        0.148    44.026 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[36]_INST_0/O
+                         net (fo=8, routed)           1.145    45.171    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/LSUWriteDataSpillM[36]
+    SLICE_X52Y42         LUT3 (Prop_lut3_I2_O)        0.354    45.525 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/ram.RAM_reg_0_i_60__1/O
+                         net (fo=4, routed)           2.805    48.330    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/p_1_in0_in[36]
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.609    48.589    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/clk
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/CLKBWRCLK
+                         clock pessimism              0.480    49.069    
+                         clock uncertainty           -0.094    48.975    
+    RAMB36_X2Y24         RAMB36E1 (Setup_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                     -0.443    48.532    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0
+  -------------------------------------------------------------------
+                         required time                         48.532    
+                         arrival time                         -48.330    
+  -------------------------------------------------------------------
+                         slack                                  0.201    
+
+Slack (MET) :             0.201ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            50.000ns  (clk_out3_mmcm rise@50.000ns - clk_out3_mmcm rise@0.000ns)
+  Data Path Delay:        49.245ns  (logic 10.189ns (20.690%)  route 39.056ns (79.310%))
+  Logic Levels:           47  (CARRY4=9 LUT1=1 LUT2=2 LUT3=7 LUT4=5 LUT5=3 LUT6=18 MUXF7=2)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.411ns = ( 48.589 - 50.000 ) 
+    Source Clock Delay      (SCD):    -0.915ns
+    Clock Pessimism Removal (CPR):    0.480ns
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out3_mmcm rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.070    -4.355 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.719    -2.636    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.096    -2.540 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.625    -0.915    wallypipelinedsoc/core/lsu/AddressMReg/clk
+    SLICE_X52Y93         FDRE                                         r  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y93         FDRE (Prop_fdre_C_Q)         0.456    -0.459 f  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/Q
+                         net (fo=11, routed)          0.644     0.185    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrM[3]
+    SLICE_X51Y93         LUT1 (Prop_lut1_I0_O)        0.124     0.309 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2/O
+                         net (fo=1, routed)           0.000     0.309    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2_n_0
+    SLICE_X51Y93         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     0.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.859    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1_n_0
+    SLICE_X51Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.973 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.973    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1_n_0
+    SLICE_X51Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.087 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.087    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1_n_0
+    SLICE_X51Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.201 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.201    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1_n_0
+    SLICE_X51Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.315 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.315    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1_n_0
+    SLICE_X51Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.649 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[25]_INST_0_i_1/O[1]
+                         net (fo=2, routed)           0.881     2.530    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrIncrementM[23]
+    SLICE_X54Y98         LUT3 (Prop_lut3_I0_O)        0.303     2.833 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[23]_INST_0/O
+                         net (fo=2, routed)           1.172     4.005    wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IEUAdrExtM[23]
+    SLICE_X38Y98         LUT5 (Prop_lut5_I0_O)        0.124     4.129 r  wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IHAdrM[23]_INST_0/O
+                         net (fo=67, routed)          1.386     5.515    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/D[11]
+    SLICE_X46Y98         LUT6 (Prop_lut6_I5_O)        0.124     5.639 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22/O
+                         net (fo=1, routed)           0.000     5.639    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22_n_0
+    SLICE_X46Y98         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.538     6.177 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q_reg[1]_i_8/CO[2]
+                         net (fo=1, routed)           0.991     7.168    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/Match10
+    SLICE_X30Y105        LUT6 (Prop_lut6_I5_O)        0.310     7.478 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3/O
+                         net (fo=8, routed)           1.239     8.718    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3_n_0
+    SLICE_X30Y115        LUT6 (Prop_lut6_I0_O)        0.124     8.842 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_2/O
+                         net (fo=58, routed)          1.612    10.453    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/Matches[0]
+    SLICE_X9Y117         LUT4 (Prop_lut4_I3_O)        0.124    10.577 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/ram.RAM_reg_0_i_344/O
+                         net (fo=1, routed)           0.972    11.549    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/hptw.hptw_i_339_0
+    SLICE_X29Y120        LUT4 (Prop_lut4_I2_O)        0.124    11.673 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/ram.RAM_reg_0_i_101/O
+                         net (fo=2, routed)           1.192    12.865    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_72
+    SLICE_X40Y123        LUT6 (Prop_lut6_I4_O)        0.124    12.989 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_i_46/O
+                         net (fo=2, routed)           0.987    13.976    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_34
+    SLICE_X45Y132        LUT5 (Prop_lut5_I2_O)        0.124    14.100 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_i_8/O
+                         net (fo=62, routed)          0.981    15.081    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/STATUS_MPP_reg[0]_11
+    SLICE_X51Y134        LUT4 (Prop_lut4_I1_O)        0.124    15.205 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LoadMisalignedFaultM_INST_0_i_34/O
+                         net (fo=3, routed)           1.036    16.240    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_2
+    SLICE_X48Y132        LUT6 (Prop_lut6_I3_O)        0.124    16.364 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_12/O
+                         net (fo=6, routed)           0.901    17.266    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/FSM_onehot_CurrState_reg[3]_0
+    SLICE_X49Y120        LUT6 (Prop_lut6_I3_O)        0.124    17.390 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LSUHADDR[1]_INST_0_i_1/O
+                         net (fo=33, routed)          2.062    19.452    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/q_reg[2]_2
+    SLICE_X47Y76         LUT3 (Prop_lut3_I1_O)        0.118    19.570 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/i__i_9__3/O
+                         net (fo=74, routed)          1.137    20.707    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/bus.dcache.CacheCMOpM[3]
+    SLICE_X43Y66         LUT5 (Prop_lut5_I0_O)        0.326    21.033 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3/O
+                         net (fo=1, routed)           0.764    21.797    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3_n_0
+    SLICE_X39Y63         LUT6 (Prop_lut6_I5_O)        0.124    21.921 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_5__3/O
+                         net (fo=44, routed)          1.467    23.388    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/SelVictim
+    SLICE_X38Y39         LUT6 (Prop_lut6_I4_O)        0.124    23.512 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031/O
+                         net (fo=64, routed)          1.337    24.848    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031_n_0
+    SLICE_X38Y57         LUT2 (Prop_lut2_I0_O)        0.117    24.965 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_2871/O
+                         net (fo=1, routed)           0.669    25.635    wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ReadDataLineWay[3]_64[39]
+    SLICE_X37Y56         LUT6 (Prop_lut6_I1_O)        0.348    25.983 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ziccslm_align.align_i_934/O
+                         net (fo=1, routed)           1.292    27.274    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ReadDataLine[39]
+    SLICE_X36Y36         LUT6 (Prop_lut6_I5_O)        0.124    27.398 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363/O
+                         net (fo=1, routed)           0.000    27.398    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363_n_0
+    SLICE_X36Y36         MUXF7 (Prop_muxf7_I0_O)      0.238    27.636 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_81/O
+                         net (fo=5, routed)           0.828    28.464    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordM[39]
+    SLICE_X39Y38         LUT6 (Prop_lut6_I1_O)        0.298    28.762 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1/O
+                         net (fo=1, routed)           0.973    29.735    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1_n_0
+    SLICE_X39Y42         LUT6 (Prop_lut6_I5_O)        0.124    29.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0/O
+                         net (fo=2, routed)           0.789    30.648    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/DCacheReadDataWordSpillM[7]
+    SLICE_X40Y48         LUT6 (Prop_lut6_I0_O)        0.124    30.772 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_3__0/O
+                         net (fo=4, routed)           0.576    31.348    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianReadDataWordM[63]
+    SLICE_X41Y50         LUT6 (Prop_lut6_I0_O)        0.124    31.472 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[15]_i_3__0/O
+                         net (fo=4, routed)           0.693    32.164    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/subwordread/HalfwordM[15]
+    SLICE_X42Y51         LUT6 (Prop_lut6_I2_O)        0.124    32.288 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0/O
+                         net (fo=48, routed)          1.072    33.361    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0_n_0
+    SLICE_X40Y54         LUT4 (Prop_lut4_I3_O)        0.150    33.511 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[17]_i_1__1/O
+                         net (fo=7, routed)           0.937    34.447    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[15]_9
+    SLICE_X43Y57         LUT4 (Prop_lut4_I3_O)        0.326    34.773 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/lt_carry__1_i_8/O
+                         net (fo=1, routed)           0.000    34.773    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2_1[0]
+    SLICE_X43Y57         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.305 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    35.305    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1_n_0
+    SLICE_X43Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    35.419 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2/CO[3]
+                         net (fo=1, routed)           1.193    36.612    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[56]_i_9_1[0]
+    SLICE_X46Y55         LUT6 (Prop_lut6_I2_O)        0.124    36.736 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_14/O
+                         net (fo=72, routed)          1.093    37.829    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/amoalu/cmp__0
+    SLICE_X46Y50         LUT3 (Prop_lut3_I2_O)        0.124    37.953 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_9/O
+                         net (fo=1, routed)           0.000    37.953    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/data5[4]
+    SLICE_X46Y50         MUXF7 (Prop_muxf7_I1_O)      0.247    38.200 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4/O
+                         net (fo=1, routed)           0.408    38.607    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4_n_0
+    SLICE_X47Y50         LUT6 (Prop_lut6_I2_O)        0.298    38.905 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_2/O
+                         net (fo=9, routed)           0.859    39.765    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/IMAFWriteDataM[4]
+    SLICE_X50Y47         LUT2 (Prop_lut2_I1_O)        0.116    39.881 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5/O
+                         net (fo=2, routed)           0.835    40.715    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5_n_0
+    SLICE_X49Y47         LUT3 (Prop_lut3_I0_O)        0.356    41.071 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[44]_i_2__0/O
+                         net (fo=4, routed)           0.603    41.674    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianWriteDataM[20]
+    SLICE_X46Y45         LUT3 (Prop_lut3_I2_O)        0.321    41.995 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/ziccslm_align.align_i_181/O
+                         net (fo=4, routed)           0.715    42.710    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataM[20]
+    SLICE_X47Y45         LUT6 (Prop_lut6_I1_O)        0.355    43.065 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1/O
+                         net (fo=2, routed)           0.813    43.878    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1_n_0
+    SLICE_X46Y44         LUT3 (Prop_lut3_I2_O)        0.148    44.026 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[36]_INST_0/O
+                         net (fo=8, routed)           1.145    45.171    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/LSUWriteDataSpillM[36]
+    SLICE_X52Y42         LUT3 (Prop_lut3_I2_O)        0.354    45.525 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/ram.RAM_reg_0_i_60__1/O
+                         net (fo=4, routed)           2.805    48.330    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/p_1_in0_in[36]
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.609    48.589    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/clk
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/CLKBWRCLK
+                         clock pessimism              0.480    49.069    
+                         clock uncertainty           -0.094    48.975    
+    RAMB36_X2Y24         RAMB36E1 (Setup_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                     -0.443    48.532    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0
+  -------------------------------------------------------------------
+                         required time                         48.532    
+                         arrival time                         -48.330    
+  -------------------------------------------------------------------
+                         slack                                  0.201    
+
+Slack (MET) :             0.201ns  (required time - arrival time)
+  Source:                 wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Destination:            wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+                            (rising edge-triggered cell RAMB36E1 clocked by clk_out3_mmcm  {rise@0.000ns fall@25.000ns period=50.000ns})
+  Path Group:             clk_out3_mmcm
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            50.000ns  (clk_out3_mmcm rise@50.000ns - clk_out3_mmcm rise@0.000ns)
+  Data Path Delay:        49.245ns  (logic 10.189ns (20.690%)  route 39.056ns (79.310%))
+  Logic Levels:           47  (CARRY4=9 LUT1=1 LUT2=2 LUT3=7 LUT4=5 LUT5=3 LUT6=18 MUXF7=2)
+  Clock Path Skew:        -0.016ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.411ns = ( 48.589 - 50.000 ) 
+    Source Clock Delay      (SCD):    -0.915ns
+    Clock Pessimism Removal (CPR):    0.480ns
+  Clock Uncertainty:      0.094ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.175ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out3_mmcm rise edge)
+                                                      0.000     0.000 r  
+    E3                                                0.000     0.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000     0.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.233     2.715    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.070    -4.355 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.719    -2.636    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.096    -2.540 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.625    -0.915    wallypipelinedsoc/core/lsu/AddressMReg/clk
+    SLICE_X52Y93         FDRE                                         r  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X52Y93         FDRE (Prop_fdre_C_Q)         0.456    -0.459 f  wallypipelinedsoc/core/lsu/AddressMReg/q_reg[3]/Q
+                         net (fo=11, routed)          0.644     0.185    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrM[3]
+    SLICE_X51Y93         LUT1 (Prop_lut1_I0_O)        0.124     0.309 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2/O
+                         net (fo=1, routed)           0.000     0.309    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_2_n_0
+    SLICE_X51Y93         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     0.859 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.859    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[5]_INST_0_i_1_n_0
+    SLICE_X51Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     0.973 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     0.973    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[9]_INST_0_i_1_n_0
+    SLICE_X51Y95         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.087 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.087    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillE[11]_INST_0_i_1_n_0
+    SLICE_X51Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.201 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.201    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[17]_INST_0_i_1_n_0
+    SLICE_X51Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     1.315 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1/CO[3]
+                         net (fo=1, routed)           0.000     1.315    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[21]_INST_0_i_1_n_0
+    SLICE_X51Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334     1.649 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[25]_INST_0_i_1/O[1]
+                         net (fo=2, routed)           0.881     2.530    wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrIncrementM[23]
+    SLICE_X54Y98         LUT3 (Prop_lut3_I0_O)        0.303     2.833 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/IEUAdrSpillM[23]_INST_0/O
+                         net (fo=2, routed)           1.172     4.005    wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IEUAdrExtM[23]
+    SLICE_X38Y98         LUT5 (Prop_lut5_I0_O)        0.124     4.129 r  wallypipelinedsoc/core/lsu/hptw.hptw/PTEReg/IHAdrM[23]_INST_0/O
+                         net (fo=67, routed)          1.386     5.515    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/D[11]
+    SLICE_X46Y98         LUT6 (Prop_lut6_I5_O)        0.124     5.639 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22/O
+                         net (fo=1, routed)           0.000     5.639    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_22_n_0
+    SLICE_X46Y98         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.538     6.177 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q_reg[1]_i_8/CO[2]
+                         net (fo=1, routed)           0.991     7.168    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/Match10
+    SLICE_X30Y105        LUT6 (Prop_lut6_I5_O)        0.310     7.478 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3/O
+                         net (fo=8, routed)           1.239     8.718    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_3_n_0
+    SLICE_X30Y115        LUT6 (Prop_lut6_I0_O)        0.124     8.842 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[1]/keyflop/q[1]_i_2/O
+                         net (fo=58, routed)          1.612    10.453    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/Matches[0]
+    SLICE_X9Y117         LUT4 (Prop_lut4_I3_O)        0.124    10.577 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[2]/pteflop/ram.RAM_reg_0_i_344/O
+                         net (fo=1, routed)           0.972    11.549    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/hptw.hptw_i_339_0
+    SLICE_X29Y120        LUT4 (Prop_lut4_I2_O)        0.124    11.673 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[6]/pteflop/ram.RAM_reg_0_i_101/O
+                         net (fo=2, routed)           1.192    12.865    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_72
+    SLICE_X40Y123        LUT6 (Prop_lut6_I4_O)        0.124    12.989 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[23]/pteflop/ram.RAM_reg_0_i_46/O
+                         net (fo=2, routed)           0.987    13.976    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_34
+    SLICE_X45Y132        LUT5 (Prop_lut5_I2_O)        0.124    14.100 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/ram.RAM_reg_0_i_8/O
+                         net (fo=62, routed)          0.981    15.081    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/STATUS_MPP_reg[0]_11
+    SLICE_X51Y134        LUT4 (Prop_lut4_I1_O)        0.124    15.205 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LoadMisalignedFaultM_INST_0_i_34/O
+                         net (fo=3, routed)           1.036    16.240    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_2
+    SLICE_X48Y132        LUT6 (Prop_lut6_I3_O)        0.124    16.364 f  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbram/tlbramline[11]/pteflop/LoadMisalignedFaultM_INST_0_i_12/O
+                         net (fo=6, routed)           0.901    17.266    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/FSM_onehot_CurrState_reg[3]_0
+    SLICE_X49Y120        LUT6 (Prop_lut6_I3_O)        0.124    17.390 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/LSUHADDR[1]_INST_0_i_1/O
+                         net (fo=33, routed)          2.062    19.452    wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/q_reg[2]_2
+    SLICE_X47Y76         LUT3 (Prop_lut3_I1_O)        0.118    19.570 r  wallypipelinedsoc/core/lsu/dmmu.dmmu/tlb.tlb/tlbcam/camlines[0]/keyflop/i__i_9__3/O
+                         net (fo=74, routed)          1.137    20.707    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/bus.dcache.CacheCMOpM[3]
+    SLICE_X43Y66         LUT5 (Prop_lut5_I0_O)        0.326    21.033 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3/O
+                         net (fo=1, routed)           0.764    21.797    wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_16__3_n_0
+    SLICE_X39Y63         LUT6 (Prop_lut6_I5_O)        0.124    21.921 r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/cachefsm/i__i_5__3/O
+                         net (fo=44, routed)          1.467    23.388    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/SelVictim
+    SLICE_X38Y39         LUT6 (Prop_lut6_I4_O)        0.124    23.512 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031/O
+                         net (fo=64, routed)          1.337    24.848    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_3031_n_0
+    SLICE_X38Y57         LUT2 (Prop_lut2_I0_O)        0.117    24.965 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/CacheTagMem/ziccslm_align.align_i_2871/O
+                         net (fo=1, routed)           0.669    25.635    wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ReadDataLineWay[3]_64[39]
+    SLICE_X37Y56         LUT6 (Prop_lut6_I1_O)        0.348    25.983 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/EarlyReturnMux/ziccslm_align.align_i_934/O
+                         net (fo=1, routed)           1.292    27.274    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ReadDataLine[39]
+    SLICE_X36Y36         LUT6 (Prop_lut6_I5_O)        0.124    27.398 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363/O
+                         net (fo=1, routed)           0.000    27.398    wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_363_n_0
+    SLICE_X36Y36         MUXF7 (Prop_muxf7_I0_O)      0.238    27.636 f  wallypipelinedsoc/core/lsu/bus.dcache.dcache/subcachelineread/ziccslm_align.align_i_81/O
+                         net (fo=5, routed)           0.828    28.464    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordM[39]
+    SLICE_X39Y38         LUT6 (Prop_lut6_I1_O)        0.298    28.762 f  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1/O
+                         net (fo=1, routed)           0.973    29.735    wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0_i_1_n_0
+    SLICE_X39Y42         LUT6 (Prop_lut6_I5_O)        0.124    29.859 f  wallypipelinedsoc/core/lsu/ziccslm_align.align/SpillDataReg/DCacheReadDataWordSpillM[7]_INST_0/O
+                         net (fo=2, routed)           0.789    30.648    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/DCacheReadDataWordSpillM[7]
+    SLICE_X40Y48         LUT6 (Prop_lut6_I0_O)        0.124    30.772 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_3__0/O
+                         net (fo=4, routed)           0.576    31.348    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianReadDataWordM[63]
+    SLICE_X41Y50         LUT6 (Prop_lut6_I0_O)        0.124    31.472 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[15]_i_3__0/O
+                         net (fo=4, routed)           0.693    32.164    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/subwordread/HalfwordM[15]
+    SLICE_X42Y51         LUT6 (Prop_lut6_I2_O)        0.124    32.288 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0/O
+                         net (fo=48, routed)          1.072    33.361    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_5__0_n_0
+    SLICE_X40Y54         LUT4 (Prop_lut4_I3_O)        0.150    33.511 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[17]_i_1__1/O
+                         net (fo=7, routed)           0.937    34.447    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[15]_9
+    SLICE_X43Y57         LUT4 (Prop_lut4_I3_O)        0.326    34.773 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/lt_carry__1_i_8/O
+                         net (fo=1, routed)           0.000    34.773    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2_1[0]
+    SLICE_X43Y57         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.305 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    35.305    wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__1_n_0
+    SLICE_X43Y58         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    35.419 r  wallypipelinedsoc/core/lsu/atomic.atomic/amoalu/cmp32/lt_carry__2/CO[3]
+                         net (fo=1, routed)           1.193    36.612    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[56]_i_9_1[0]
+    SLICE_X46Y55         LUT6 (Prop_lut6_I2_O)        0.124    36.736 f  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[63]_i_14/O
+                         net (fo=72, routed)          1.093    37.829    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/amoalu/cmp__0
+    SLICE_X46Y50         LUT3 (Prop_lut3_I2_O)        0.124    37.953 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_9/O
+                         net (fo=1, routed)           0.000    37.953    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/atomic.atomic/data5[4]
+    SLICE_X46Y50         MUXF7 (Prop_muxf7_I1_O)      0.247    38.200 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4/O
+                         net (fo=1, routed)           0.408    38.607    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q_reg[60]_i_4_n_0
+    SLICE_X47Y50         LUT6 (Prop_lut6_I2_O)        0.298    38.905 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[60]_i_2/O
+                         net (fo=9, routed)           0.859    39.765    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/IMAFWriteDataM[4]
+    SLICE_X50Y47         LUT2 (Prop_lut2_I1_O)        0.116    39.881 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5/O
+                         net (fo=2, routed)           0.835    40.715    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[52]_i_5_n_0
+    SLICE_X49Y47         LUT3 (Prop_lut3_I0_O)        0.356    41.071 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/q[44]_i_2__0/O
+                         net (fo=4, routed)           0.603    41.674    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/LittleEndianWriteDataM[20]
+    SLICE_X46Y45         LUT3 (Prop_lut3_I2_O)        0.321    41.995 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[0].fb/ziccslm_align.align_i_181/O
+                         net (fo=4, routed)           0.715    42.710    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataM[20]
+    SLICE_X47Y45         LUT6 (Prop_lut6_I1_O)        0.355    43.065 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1/O
+                         net (fo=2, routed)           0.813    43.878    wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[44]_INST_0_i_1_n_0
+    SLICE_X46Y44         LUT3 (Prop_lut3_I2_O)        0.148    44.026 r  wallypipelinedsoc/core/lsu/ziccslm_align.align/LSUWriteDataSpillM[36]_INST_0/O
+                         net (fo=8, routed)           1.145    45.171    wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/LSUWriteDataSpillM[36]
+    SLICE_X52Y42         LUT3 (Prop_lut3_I2_O)        0.354    45.525 r  wallypipelinedsoc/core/lsu/bus.dcache.ahbcacheinterface/fetchbuffer[2].fb/ram.RAM_reg_0_i_60__1/O
+                         net (fo=4, routed)           2.805    48.330    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/p_1_in0_in[36]
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/DIBDI[4]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out3_mmcm rise edge)
+                                                     50.000    50.000 r  
+    E3                                                0.000    50.000 r  default_100mhz_clk (IN)
+                         net (fo=0)                   0.000    50.000    mmcm/inst/clk_in1
+    E3                   IBUF (Prop_ibuf_I_O)         1.411    51.411 r  mmcm/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.162    52.573    mmcm/inst/clk_in1_mmcm
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT2)
+                                                     -7.324    45.249 r  mmcm/inst/mmcm_adv_inst/CLKOUT2
+                         net (fo=1, routed)           1.639    46.888    mmcm/inst/clk_out3_mmcm
+    BUFGCTRL_X0Y19       BUFG (Prop_bufg_I_O)         0.091    46.979 r  mmcm/inst/clkout3_buf/O
+                         net (fo=46909, routed)       1.609    48.589    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/clk
+    RAMB36_X2Y24         RAMB36E1                                     r  wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0/CLKBWRCLK
+                         clock pessimism              0.480    49.069    
+                         clock uncertainty           -0.094    48.975    
+    RAMB36_X2Y24         RAMB36E1 (Setup_ramb36e1_CLKBWRCLK_DIBDI[4])
+                                                     -0.443    48.532    wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0
+  -------------------------------------------------------------------
+                         required time                         48.532    
+                         arrival time                         -48.330    
+  -------------------------------------------------------------------
+                         slack                                  0.201    
+
+
+
+

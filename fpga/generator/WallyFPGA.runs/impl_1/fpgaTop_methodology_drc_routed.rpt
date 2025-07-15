@@ -1,0 +1,826 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
+| Date         : Tue Jul 15 11:44:06 2025
+| Host         : sidharth-Alienware-Aurora-Ryzen-Edition running 64-bit Ubuntu 24.04.2 LTS
+| Command      : report_methodology -file fpgaTop_methodology_drc_routed.rpt -pb fpgaTop_methodology_drc_routed.pb -rpx fpgaTop_methodology_drc_routed.rpx
+| Design       : fpgaTop
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: checkpoint_fpgaTop
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 145
++-----------+----------+------------------------------------------------------+------------+
+| Rule      | Severity | Description                                          | Violations |
++-----------+----------+------------------------------------------------------+------------+
+| LUTAR-1   | Warning  | LUT drives async reset alert                         | 5          |
+| SYNTH-10  | Warning  | Wide multiplier                                      | 24         |
+| SYNTH-15  | Warning  | Byte wide write enable not inferred                  | 17         |
+| SYNTH-16  | Warning  | Address collision                                    | 50         |
+| TIMING-9  | Warning  | Unknown CDC Logic                                    | 1          |
+| TIMING-10 | Warning  | Missing property on synchronizer                     | 1          |
+| TIMING-16 | Warning  | Large setup violation                                | 1          |
+| TIMING-28 | Warning  | Auto-derived clock referenced by a timing constraint | 12         |
+| XDCB-5    | Warning  | Runtime inefficient way to find pin objects          | 3          |
+| XDCH-2    | Warning  | Same min and max delay values on IO port             | 15         |
+| REQP-1959 | Advisory | connects_SERDES_RST_driver_not_FF                    | 16         |
++-----------+----------+------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].rrst_inst/ngwrdrst.grst.g7serrst.rd_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[0]/PRE,
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[1]/PRE
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].wrst_inst/ngwrdrst.grst.g7serrst.wr_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[0]/PRE,
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[1]/PRE
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#3 Warning
+LUT drives async reset alert  
+LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].rrst_inst/ngwrdrst.grst.g7serrst.rd_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[0]/PRE,
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[1]/PRE
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#4 Warning
+LUT drives async reset alert  
+LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].wrst_inst/ngwrdrst.grst.g7serrst.wr_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[0]/PRE,
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[1]/PRE
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_2_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#5 Warning
+LUT drives async reset alert  
+LUT cell ddr3/u_ddr3_mig/u_iodelay_ctrl/rstdiv2_sync_r[11]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r1_reg_rep__7/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r1_reg_rep__8/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r1_reg_rep__9/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[0]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[10]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[11]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[1]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[2]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[3]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[4]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[5]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[6]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[7]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[8]/PRE,
+ddr3/u_ddr3_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[9]/PRE
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+SYNTH-10#1 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm of size 18x20, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#2 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__0 of size 20x18, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#3 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__2 of size 18x20, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#4 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__3 of size 18x18, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#5 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__4 of size 20x18, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#6 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__5 of size 18x18, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#7 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__6 of size 18x18, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#8 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/fpu.fpu/fma/mult/Pm__7 of size 18x18, it is decomposed from a wide multipler into 10 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#9 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E of size 13x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#10 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__0 of size 18x13, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#11 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__1 of size 13x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#12 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__10 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#13 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__2 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#14 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__3 of size 13x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#15 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__4 of size 18x13, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#16 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__5 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#17 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__6 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#18 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__7 of size 18x13, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#19 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__8 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#20 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1E__9 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#21 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1Reg/q_reg of size 13x13, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#22 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1Reg/q_reg__0 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#23 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1Reg/q_reg__1 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#24 Warning
+Wide multiplier  
+Detected multiplier at wallypipelinedsoc/core/mdu.mdu/mul/PP1Reg/q_reg__2 of size 18x18, it is decomposed from a wide multipler into 16 DSP blocks.
+Related violations: <none>
+
+SYNTH-15#1 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_0 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#2 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_1 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#3 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_10 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#4 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_11 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#5 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_12 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#6 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_13 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#7 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_14 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#8 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_15 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#9 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_16 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#10 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_2 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#11 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_3 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#12 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_4 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#13 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_5 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#14 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_6 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#15 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_7 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#16 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_8 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-15#17 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_9 because byte width (4) is not a multiple of 8(data_only) or 9(data + parity).
+Related violations: <none>
+
+SYNTH-16#1 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/Predictor.DirPredictor/PHT/ram.RAM_reg may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#2 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#3 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#4 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_10 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#5 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_11 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#6 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_12 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#7 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_13 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#8 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_14 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#9 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_15 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#10 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_16 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#11 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_2 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#12 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_3 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#13 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_4 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#14 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_5 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#15 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_6 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#16 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_7 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#17 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_8 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#18 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/ifu/bpred.bpred/TargetPredictor/memory/ram.RAM_reg_9 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#19 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[0].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#20 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[0].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#21 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[1].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#22 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[1].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#23 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[2].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#24 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[2].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#25 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[3].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#26 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[0]/word[3].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#27 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[0].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#28 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[0].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#29 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#30 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[1].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#31 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[2].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#32 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[2].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#33 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[3].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#34 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[1]/word[3].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#35 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[0].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#36 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[0].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#37 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[1].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#38 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[1].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#39 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[2].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#40 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[2].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#41 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[3].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#42 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[2]/word[3].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#43 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[0].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#44 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[0].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#45 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[1].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#46 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[1].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#47 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[2].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#48 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[2].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#49 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[3].wordram.CacheDataMem/ram.RAM_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#50 Warning
+Address collision  
+Block RAM wallypipelinedsoc/core/lsu/bus.dcache.dcache/CacheWays[3]/word[3].wordram.CacheDataMem/ram.RAM_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+TIMING-9#1 Warning
+Unknown CDC Logic  
+One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
+Related violations: <none>
+
+TIMING-10#1 Warning
+Missing property on synchronizer  
+One or more logic synchronizer has been detected between 2 clock domains but the synchronizer does not have the property ASYNC_REG defined on one or both registers. It is recommended to run report_cdc for a complete and detailed CDC coverage
+Related violations: <none>
+
+TIMING-16#1 Warning
+Large setup violation  
+There is a large setup violation of -1.930 ns between ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_calib_top/init_calib_complete_reg/C (clocked by clk_pll_i) and sysrst/U0/EXT_LPF/lpf_int_reg/D (clocked by clk_out3_mmcm). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-28#1 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 17 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#2 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 18 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#3 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 21 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#4 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 22 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#5 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 25 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#6 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 26 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#7 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 27 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#8 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 28 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#9 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 29 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#10 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 30 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#11 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 33 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#12 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock clk_out3_mmcm is referenced by name inside timing constraint (see constraint position 34 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins mmcm/inst/mmcm_adv_inst/CLKOUT2]
+Related violations: <none>
+
+XDCB-5#1 Warning
+Runtime inefficient way to find pin objects  
+The option '-from : [get_pins -hierarchical -filter {NAME =~ *ila_core_inst/u_trig/N_DDR_TC.N_DDR_TC_INST[*].U_TC/allx_typeA_match_detection.ltlib_v1_0_2_allx_typeA_inst/DUT/u_srl_drive/CLK}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '120' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/sidharth/Wally/cvw/fpga/generator/WallyFPGA.runs/impl_1/.Xil/Vivado-10685-sidharth-Alienware-Aurora-Ryzen-Edition/u_ila_0_CV.0/out/ila_early.xdc (Line: 72)
+Related violations: <none>
+
+XDCB-5#2 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -include_replicated_objects -filter {NAME =~ *temp_mon_enabled.u_tempmon/device_temp_sync_r1_reg[*]/D}]' of constraint 'set_max_delay' uses inefficient query to find pin objects (see constraint position '6' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/sidharth/Wally/cvw/fpga/generator/WallyFPGA.gen/sources_1/ip/ddr3/ddr3/user_design/constraints/ddr3.xdc (Line: 356)
+Related violations: <none>
+
+XDCB-5#3 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hierarchical -filter {NAME =~ *ila_core_inst/u_trig/N_DDR_TC.N_DDR_TC_INST[*].U_TC/yes_output_reg.dout_reg_reg/D}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '120' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/sidharth/Wally/cvw/fpga/generator/WallyFPGA.runs/impl_1/.Xil/Vivado-10685-sidharth-Alienware-Aurora-Ryzen-Edition/u_ila_0_CV.0/out/ila_early.xdc (Line: 72)
+Related violations: <none>
+
+XDCH-2#1 Warning
+Same min and max delay values on IO port  
+The same input delay of 0.000 ns has been defined on port 'GPI[0]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPI[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 49)
+Related violations: <none>
+
+XDCH-2#2 Warning
+Same min and max delay values on IO port  
+The same input delay of 0.000 ns has been defined on port 'GPI[1]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPI[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 49)
+Related violations: <none>
+
+XDCH-2#3 Warning
+Same min and max delay values on IO port  
+The same input delay of 0.000 ns has been defined on port 'GPI[2]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPI[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 49)
+Related violations: <none>
+
+XDCH-2#4 Warning
+Same min and max delay values on IO port  
+The same input delay of 0.000 ns has been defined on port 'GPI[3]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPI[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 49)
+Related violations: <none>
+
+XDCH-2#5 Warning
+Same min and max delay values on IO port  
+The same input delay of 0.000 ns has been defined on port 'UARTSin' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports UARTSin]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 79)
+Related violations: <none>
+
+XDCH-2#6 Warning
+Same min and max delay values on IO port  
+The same input delay of 2.000 ns has been defined on port 'resetn' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 2.000 [get_ports resetn]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 87)
+Related violations: <none>
+
+XDCH-2#7 Warning
+Same min and max delay values on IO port  
+The same input delay of 2.000 ns has been defined on port 'south_reset' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 2.000 [get_ports south_reset]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 95)
+Related violations: <none>
+
+XDCH-2#8 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'GPO[0]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPO[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 66)
+Related violations: <none>
+
+XDCH-2#9 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'GPO[1]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPO[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 66)
+Related violations: <none>
+
+XDCH-2#10 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'GPO[2]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPO[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 66)
+Related violations: <none>
+
+XDCH-2#11 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'GPO[3]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPO[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 66)
+Related violations: <none>
+
+XDCH-2#12 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'GPO[4]' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports {GPO[*]}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 66)
+Related violations: <none>
+
+XDCH-2#13 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'UARTSout' relative to clock clk_out3_mmcm for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock [get_clocks clk_out3_mmcm] -max -add_delay 0.000 [get_ports UARTSout]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 81)
+Related violations: <none>
+
+XDCH-2#14 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'phy_ref_clk' for both max and min. Make sure this reflects the design intent.
+set_output_delay 0.000 [get_ports {phy_ref_clk phy_reset_n}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 37)
+Related violations: <none>
+
+XDCH-2#15 Warning
+Same min and max delay values on IO port  
+The same output delay of 0.000 ns has been defined on port 'phy_reset_n' for both max and min. Make sure this reflects the design intent.
+set_output_delay 0.000 [get_ports {phy_ref_clk phy_reset_n}]
+/home/sidharth/Wally/cvw/fpga/constraints/constraints-ArtyA7.xdc (Line: 37)
+Related violations: <none>
+
+REQP-1959#1 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[1].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#2 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[2].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#3 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[3].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#4 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[4].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#5 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[5].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#6 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[6].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#7 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[7].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#8 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/ddr_byte_group_io/input_[8].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#9 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[1].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#10 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[2].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#11 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[3].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#12 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[4].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#13 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[5].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#14 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[6].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#15 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[7].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+REQP-1959#16 Advisory
+connects_SERDES_RST_driver_not_FF  
+ddr3/u_ddr3_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/ddr_byte_group_io/input_[8].iserdes_dq_.iserdesdq: The RST pin should only be driven by a Flip-flop.
+Related violations: <none>
+
+
