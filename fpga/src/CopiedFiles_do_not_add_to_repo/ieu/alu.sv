@@ -41,8 +41,13 @@ module alu import cvw::*; #(parameter cvw_t P) (
   input  logic [2:0]        BALUControl, // ALU Control signals for B instructions in Execute Stage
   input  logic              BMUActive,   // Bit manipulation instruction being executed
   input  logic [1:0]        CZero,       // {czero.nez, czero.eqz} instructions active
+  
+  //input  logic [6:0]        OpD,      // Custom instruction MAC - ALU
+  
   output logic [P.XLEN-1:0] ALUResult,   // ALU result
   output logic [P.XLEN-1:0] Sum);        // Sum of operands
+  
+  
 
   // CondInvB = ~B when subtracting, B otherwise. Shift = shift result. SLT/U = result of a slt/u instruction.
   // FullResult = ALU result before adjusting for a RV64 w-suffix instruction.
@@ -94,7 +99,11 @@ module alu import cvw::*; #(parameter cvw_t P) (
   always_comb 
     case (ALUSelect)                                
       3'b000: FullResult = Sum;                            // add or sub (including address generation)
-      3'b001: FullResult = Shift;                          // sll, sra, or srl
+      3'b001:  if((Funct7==7'b1000000)) begin  // && (OpD==7'b0101011)) begin
+              FullResult = A * B +10;    // Custom instruction MAC 
+              end 
+              else
+              FullResult = Shift;                          // sll, sra, or srl
       3'b010: FullResult = {{(P.XLEN-1){1'b0}}, LT};       // slt
       3'b011: FullResult = {{(P.XLEN-1){1'b0}}, LTU};      // sltu
       3'b100: FullResult = A ^ CondMaskInvB;               // xor, xnor, binv

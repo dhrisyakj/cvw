@@ -1,6 +1,9 @@
 //max function
 `define max(a,b) (((a) > (b)) ? (a) : (b))
-
+ `define RegAddrBus 4:0
+`define RegBus 31:0
+`define RIB_REQ 1'b1
+`define RIB_NREQ 1'b0
 // constants defining different privilege modes
 // defined in Table 1.1 of the privileged spec
 localparam M_MODE  = (2'b11);

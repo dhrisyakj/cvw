@@ -25,8 +25,8 @@
 // either express or implied. See the License for the specific language governing permissions
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
-
-`include "config.vh"
+//`include "/home/sidharth/Wally/cvw/fpga/src/CopiedFiles_do_not_add_to_repo/config/config.vh"
+`include "/home/sidharth/Wally/cvw/config/rv64gc/config.vh"
 `include "tests.vh"
 `include "BranchPredictorType.vh"
 

@@ -10,7 +10,7 @@ OPT=--assert
 PARAMS?=--no-trace-top
 NONPROF?=--stats
 VERILATOR_DIR=${WALLY}/sim/verilator
-SOURCE=${WALLY}/config/shared/*.vh ${WALLY}/config/${WALLYCONF} ${WALLY}/config/deriv/${WALLYCONF} ${WALLY}/src/cvw.sv ${WALLY}/testbench/*.sv ${WALLY}/testbench/common/*.sv ${WALLY}/src/*/*.sv ${WALLY}/src/*/*/*.sv
+SOURCE=${WALLY}/config/shared/*.vh ${WALLY}/config/${WALLYCONF} ${WALLY}/config/deriv/${WALLYCONF} ${WALLY}/src/cvw.sv ${WALLY}/testbench/*.sv ${WALLY}/testbench/common/*.sv ${WALLY}/fpga/src/*/*.sv ${WALLY}/fpga/src/*/*/*.sv
 PLUS_ARGS=
 PARAM_ARGS=
 DEFINE_ARGS=
@@ -25,7 +25,8 @@ TESTBENCH?=testbench
 # INCLUDE_PATH are paths that Verilator should search for files it needs
 INCLUDE_PATH="-I${WALLY}/config/shared" "-I${WALLY}/config/$(WALLYCONF)" "-I${WALLY}/config/deriv/$(WALLYCONF)"
 # SOURCES are source files
-SOURCES=${WALLY}/src/cvw.sv ${WALLY}/testbench/${TESTBENCH}.sv ${WALLY}/testbench/common/*.sv ${WALLY}/src/*/*.sv ${WALLY}/src/*/*/*.sv ${WALLY}/addins/verilog-ethernet/*/*.sv ${WALLY}/addins/verilog-ethernet/*/*/*/*.sv
+SOURCES=${WALLY}/src/cvw.sv ${WALLY}/testbench/${TESTBENCH}.sv ${WALLY}/testbench/common/*.sv ${WALLY}/fpga/src/*/*.sv ${WALLY}/fpga/src/*/*/*.sv ${WALLY}/src/*/*/*.sv ${WALLY}/fpga/generator/WallyFPGA.srcs/sources_1/new/mac_unit.sv
+# ${WALLY}/addins/verilog-ethernet/*/*.sv  ${WALLY}/addins/verilog-ethernet/*/*/*/*.sv 
 # DEPENDENCIES are configuration files and source files, which leads to recompilation of executables
 DEPENDENCIES=${WALLY}/config/shared/*.vh $(SOURCES)
 

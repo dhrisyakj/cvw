@@ -1,0 +1,59 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  -i "../../../../../src/CopiedFiles_do_not_add_to_repo/config" -i "../../../../../../config/shared" --include "../../../../WallyFPGA.ip_user_files/ipstatic/hdl" --include "../../../../WallyFPGA.ip_user_files/ipstatic" --include "../../../../../../config/shared" --include "../../../../../../testbench/sdc" --include "../../../../../../testbench" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/cvw.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aes32d.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aes32e.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aes64d.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aes64e.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aes64ks1i.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aes64ks2.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesinvmixcolumns32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesinvmixcolumns8.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesinvsbox64.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesinvsbox8.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesinvshiftrows64.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesmixcolumns32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aessbox32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aessbox8.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/aesshiftrows64.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/alu.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/bitmanipalu.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/bitreverse.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/byteop.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/clmul.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/cnt.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/comparator.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/datapath.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/generic/decoder.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/ext.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/extend.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/generic/flop/flopenrc.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/galoismultforward8.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/galoismultinverse8.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/generic/lzc.sv" \
+"../../../../WallyFPGA.srcs/sources_1/new/mac_unit.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/generic/mux.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/packer.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/popcnt.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/aes/rconlut32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/regfile.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/sha/sha256.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/sha/sha512_32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/sha/sha512_64.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/shifter.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/zbb.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/bmu/zbc.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zbkb.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zbkx.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zipper.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zknde32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zknde64.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zknh32.sv" \
+"../../../../../src/CopiedFiles_do_not_add_to_repo/ieu/kmu/zknh64.sv" \
+"../../../../WallyFPGA.srcs/sim_1/new/datapath_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

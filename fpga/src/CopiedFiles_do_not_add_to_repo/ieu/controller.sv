@@ -89,7 +89,9 @@ module controller import cvw::*;  #(parameter cvw_t P) (
   output logic        CSRWriteFenceM,          // CSR write or fence instruction; needs to flush the following instructions
   output logic [4:0]  RdE, RdM,                // Pipelined destination registers
   // Forwarding controls
-  output logic [4:0]  RdW                      // Register destinations in Execute, Memory, or Writeback stage
+  output logic [4:0]  RdW,                    // Register destinations in Execute, Memory, or Writeback stage
+  
+  output logic mac_validE                      // Custom instruction MAC - Decode
 );
 
   logic [4:0] Rs1E;                      // pipelined register sources
@@ -160,6 +162,13 @@ module controller import cvw::*;  #(parameter cvw_t P) (
   logic        FunctCZeroD;                    // Funct7 and Funct3 indicate czero.* (not including Op check)
   logic        BUW64D;                         // Indicates if it is a .uw type B instruction in Decode Stage
   
+   
+   logic        CuFunctD;                        // Custom instruction MAC - Decode
+   logic        mac_validD;                       // Custom instruction MAC - Decode
+   //logic        mac_validE;                     // Custom instruction MAC - Decode
+  // assign CuFunctD         = (Funct7D == 7'b1000000); // Custom insturction MAC - Decode
+   
+   
   // Extract fields
   assign OpD     = InstrD[6:0];
   assign Funct3D = InstrD[14:12];
@@ -177,6 +186,8 @@ module controller import cvw::*;  #(parameter cvw_t P) (
       P.ZKND_SUPPORTED  | P.ZKNH_SUPPORTED | P.ZICOND_SUPPORTED) begin:legalcheck // Exact integer decoding
     logic Funct7ZeroD, Funct7b5D, IShiftD, INoShiftD;
     logic Funct7ShiftZeroD, Funct7Shiftb5D;
+    
+    assign CuFunctD         = (Funct7D == 7'b1000000); //&& (Funct3D==3'b001) ; // Custom insturction Decode
 
     assign Funct7ZeroD      = (Funct7D == 7'b0000000); // most R-type instructions
     assign Funct7b5D        = (Funct7D == 7'b0100000); // srai, sub
@@ -235,7 +246,11 @@ module controller import cvw::*;  #(parameter cvw_t P) (
     assign PFunctD = 1'b1; // don't bother to check fields for privileged instructions
     assign CSRFunctD = 1'b1; // don't bother to check Funct3 for CSR operations
     assign IWValidFunct3D = 1'b1;
+    assign mac_validD =1'b0;
   end
+  
+
+  
 
   // Main Instruction Decoder
   /* verilator lint_off CASEINCOMPLETE */
@@ -292,6 +307,12 @@ module controller import cvw::*;  #(parameter cvw_t P) (
                    else if (CSRFunctD)
                       ControlsD = `CTRLW'b1_000_00_00_010_0_0_0_0_0_1_0_0_0_00_0_0; // csrs
                   end
+                  
+           // Adding Custom Instruction Decode - EXEC_MAC
+       7'b0101011: if (CuFunctD) begin
+                      ControlsD = `CTRLW'b1_000_00_00_000_0_1_0_0_0_0_0_0_0_00_0_0; // R-type Custom Instruction
+                     // mac_validD =1'b1;
+                      end
     endcase
   end
   /* verilator lint_on CASEINCOMPLETE */
@@ -424,6 +445,10 @@ module controller import cvw::*;  #(parameter cvw_t P) (
   flopenrc #(5)  Rs1EReg(clk, reset, FlushE, ~StallE, Rs1D, Rs1E);
   flopenrc #(5)  Rs2EReg(clk, reset, FlushE, ~StallE, Rs2D, Rs2E);
   flopenrc #(5)  RdEReg(clk, reset, FlushE, ~StallE, RdD, RdE);
+  
+  // MAC Control pipeline register
+  flopenrc #(1)  macControlE(clk, reset, FlushE, ~StallE, mac_validD, mac_validE);   // Custom instruction MAC - Decode
+  
 
   // Branch Logic
   //  The comparator handles both signed and unsigned branches using BranchSignedE
