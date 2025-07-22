@@ -99,10 +99,10 @@ module alu import cvw::*; #(parameter cvw_t P) (
   always_comb 
     case (ALUSelect)                                
       3'b000: FullResult = Sum;                            // add or sub (including address generation)
-      3'b001:  if((Funct7==7'b1000000)) begin  // && (OpD==7'b0101011)) begin
-              FullResult = A * B +10;    // Custom instruction MAC 
-              end 
-              else
+      3'b001: // if((Funct7==7'b1000000)) begin  // && (OpD==7'b0101011)) begin
+              //FullResult = A * B +10;    // Custom instruction MAC 
+              //end 
+              //else
               FullResult = Shift;                          // sll, sra, or srl
       3'b010: FullResult = {{(P.XLEN-1){1'b0}}, LT};       // slt
       3'b011: FullResult = {{(P.XLEN-1){1'b0}}, LTU};      // sltu

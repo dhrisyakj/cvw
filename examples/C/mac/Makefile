@@ -1,4 +1,4 @@
-TARGET = testa
+TARGET = maca
 
 $(TARGET).objdump: $(TARGET)
 	riscv64-unknown-elf-objdump -S -D $(TARGET) > $(TARGET).objdump

@@ -91,7 +91,9 @@ module controller import cvw::*;  #(parameter cvw_t P) (
   // Forwarding controls
   output logic [4:0]  RdW,                    // Register destinations in Execute, Memory, or Writeback stage
   
-  output logic mac_validE                      // Custom instruction MAC - Decode
+  output logic mac_validE,                     // Custom instruction MAC - Execution
+  output logic mac_validM,                     // Custom instruction MAC - Execution
+  output logic mac_validW                     // Custom instruction MAC - Execution
 );
 
   logic [4:0] Rs1E;                      // pipelined register sources
@@ -246,16 +248,17 @@ module controller import cvw::*;  #(parameter cvw_t P) (
     assign PFunctD = 1'b1; // don't bother to check fields for privileged instructions
     assign CSRFunctD = 1'b1; // don't bother to check Funct3 for CSR operations
     assign IWValidFunct3D = 1'b1;
-    assign mac_validD =1'b0;
+   
   end
   
-
+  //assign mac_validD =1'b0;
   
 
   // Main Instruction Decoder
   /* verilator lint_off CASEINCOMPLETE */
   always_comb begin
     ControlsD = `CTRLW'b0_000_00_00_000_0_0_0_0_0_0_0_0_0_00_0_1; // default: Illegal instruction
+    mac_validD =1'b0;
     case(OpD)
     // RegWrite_ImmSrc_ALUSrc(A_B)_MemRW_ResultSrc_Branch_ALUOp_Jump_ALUResultSrc_BaseW64_CSRRead_Privileged_Fence_MDU_Atomic_CMO_Illegal
       7'b0000011: if (LFunctD) 
@@ -308,10 +311,11 @@ module controller import cvw::*;  #(parameter cvw_t P) (
                       ControlsD = `CTRLW'b1_000_00_00_010_0_0_0_0_0_1_0_0_0_00_0_0; // csrs
                   end
                   
-           // Adding Custom Instruction Decode - EXEC_MAC
+           // Adding Custom Instruction Decode - MAC_UNIT
        7'b0101011: if (CuFunctD) begin
-                      ControlsD = `CTRLW'b1_000_00_00_000_0_1_0_0_0_0_0_0_0_00_0_0; // R-type Custom Instruction
-                     // mac_validD =1'b1;
+                      ControlsD = `CTRLW'b1_000_00_00_000_0_0_0_0_0_0_0_0_0_00_0_0; // R-type Custom Instruction
+                      mac_validD =1'b1;
+                      //mac_validE = mac_validD;
                       end
     endcase
   end
@@ -446,7 +450,7 @@ module controller import cvw::*;  #(parameter cvw_t P) (
   flopenrc #(5)  Rs2EReg(clk, reset, FlushE, ~StallE, Rs2D, Rs2E);
   flopenrc #(5)  RdEReg(clk, reset, FlushE, ~StallE, RdD, RdE);
   
-  // MAC Control pipeline register
+  // MAC Control Execution pipeline register
   flopenrc #(1)  macControlE(clk, reset, FlushE, ~StallE, mac_validD, mac_validE);   // Custom instruction MAC - Decode
   
 
@@ -472,11 +476,20 @@ module controller import cvw::*;  #(parameter cvw_t P) (
                          {RegWriteM, ResultSrcM, MemRWM, CSRReadM, CSRWriteM, PrivilegedM, Funct3M, FWriteIntM, AtomicM, InvalidateICacheM, FlushDCacheM, FenceM, InstrValidM, IntDivM, CMOpM, LSUPrefetchM});
   flopenrc #(5)  RdMReg(clk, reset, FlushM, ~StallM, RdE, RdM);  
 
+
+   // MAC Control Memory pipeline register
+  flopenrc #(1)  macControlM(clk, reset, FlushM, ~StallM, mac_validE, mac_validM);   // Custom instruction MAC - Decode
+  
+  
   // Writeback stage pipeline control register
   flopenrc #(5) controlregW(clk, reset, FlushW, ~StallW,
                          {RegWriteM, ResultSrcM, IntDivM},
                          {RegWriteW, ResultSrcW, IntDivW});  
   flopenrc #(5) RdWReg(clk, reset, FlushW, ~StallW, RdM, RdW);
+  
+   // MAC WriteBack pipeline register
+  flopenrc #(1)  macControlW(clk, reset, FlushW, ~StallW, mac_validM, mac_validW);   // Custom instruction MAC - Decode
+  
 
   // Flush F, D, and E stages on a CSR write or Fence.I or SFence.VMA
   assign CSRWriteFenceM = CSRWriteM | FenceM;

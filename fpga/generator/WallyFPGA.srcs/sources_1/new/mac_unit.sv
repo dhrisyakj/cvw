@@ -19,8 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-
 module mac_unit#(
     parameter int IN_WIDTH   = 64,
     parameter int ACC_WIDTH  = 64 
@@ -31,33 +29,23 @@ module mac_unit#(
     input  logic [IN_WIDTH-1:0]       a,
     input  logic [IN_WIDTH-1:0]       b,
     output logic [ACC_WIDTH-1:0]      acc
-    // output logic                 done
-    // output logic [ACC_WIDTH-1:0] count
+
 );
 
-    logic [IN_WIDTH:0]                 product = a * b;
-    logic [ACC_WIDTH:0]              result;
+    logic [IN_WIDTH-1:0]                 product= a * b; // Multiplication
+    logic [ACC_WIDTH-1:0]              result;
+  
     
-    always_ff @(posedge clk) begin
-        // done <= 1'b0;
+    always_ff @(posedge clk) begin  
         if (acc_rst) begin
-            acc <= '0;
+            acc <= 64'b0;
         end else begin
             if (valid) begin
-               result = acc + product;
-                acc <= result[ACC_WIDTH-1:0]; // Accumulation
-                // done <= 1'b1;
+               acc <= acc + product;  // Accumualtion 
             end                  
-        end
+        //end
     end
         
-   /*
-    always_ff @(posedge clk) begin   
-      if (acc_rst)
-        result <= '0;
-      else
-        result <= acc; // Writing the result of accumulation into a result
-    end 
-   */
+   end
 endmodule
 

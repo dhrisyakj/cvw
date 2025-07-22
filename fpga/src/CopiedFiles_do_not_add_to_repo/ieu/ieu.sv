@@ -95,7 +95,9 @@ module ieu import cvw::*;  #(parameter cvw_t P) (
   logic       SubArithE;                                     // Subtraction or arithmetic shift
   logic       UW64E;                                         // .uw-type instruction
 
-  logic mac_validE;  // Custom instruction MAC - Decode
+  logic mac_validM;  // Custom instruction MAC - Memory
+  logic mac_validE;  // Custom instruction MAC - Execution
+  logic mac_validW;  // Custom instruction MAC - Writeback
   logic [6:0] Funct7E;
 
   // Forwarding signals
@@ -119,7 +121,7 @@ module ieu import cvw::*;  #(parameter cvw_t P) (
     .StallM, .FlushM, .MemRWE, .MemRWM, .CSRReadM, .CSRWriteM, .PrivilegedM, .AtomicM, .Funct3M,
     .FlushDCacheM, .InstrValidM, .InstrValidE, .InstrValidD, .FWriteIntM,
     .StallW, .FlushW, .RegWriteW, .IntDivW, .ResultSrcW, .CSRWriteFenceM, .InvalidateICacheM,
-    .RdW, .RdE, .RdM ,.mac_validE); // Custom instruction MAC - Decode
+    .RdW, .RdE, .RdM ,.mac_validE, .mac_validM, .mac_validW); // Custom instruction MAC
 
   datapath #(P) dp(
     .clk, .reset, .ImmSrcD, .InstrD, .Rs1D, .Rs2D, .Rs2E, .StallE, .FlushE, .ForwardAE, .ForwardBE, .W64E, .UW64E, .SubArithE,
@@ -127,5 +129,5 @@ module ieu import cvw::*;  #(parameter cvw_t P) (
     .PCE, .PCLinkE, .FlagsE, .IEUAdrE, .ForwardedSrcAE, .ForwardedSrcBE, .BSelectE, .ZBBSelectE, .BALUControlE, .BMUActiveE, .CZeroE,
     .StallM, .FlushM, .FWriteIntM, .FIntResM, .SrcAM, .WriteDataM, .FCvtIntW,
     .StallW, .FlushW, .RegWriteW, .IntDivW, .SquashSCW, .ResultSrcW, .ReadDataW, .FCvtIntResW,
-    .CSRReadValW, .MDUResultW, .FIntDivResultW, .RdW , .mac_validE);      // Custom instruction MAC - Decode        
+    .CSRReadValW, .MDUResultW, .FIntDivResultW, .RdW , .mac_validE , .mac_validM, .mac_validW);      // Custom instruction MAC        
 endmodule

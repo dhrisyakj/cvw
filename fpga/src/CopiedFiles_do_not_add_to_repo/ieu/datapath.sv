@@ -73,7 +73,9 @@ module datapath import cvw::*;  #(parameter cvw_t P) (
   input  logic [P.XLEN-1:0] MDUResultW,              // MDU (Multiply/divide unit) result
   input  logic [P.XLEN-1:0] FIntDivResultW,          // FPU's integer divide result
   
-   input logic mac_validE,     // Custom instruction MAC - Decode
+   input logic mac_validE,     // Custom instruction MAC - Execution
+   input logic mac_validM,     // Custom instruction MAC - Memory
+   input logic mac_validW,     // Custom instruction MAC - Writeback
   input  logic [4:0]        RdW                      // Destination register
    // Hazard Unit signals 
 );
@@ -93,11 +95,19 @@ module datapath import cvw::*;  #(parameter cvw_t P) (
   // Writeback stage signals
   logic [P.XLEN-1:0] SCResultW;                      // Store Conditional result
   logic [P.XLEN-1:0] ResultW;                        // Result to write to register file
+  
+  logic [P.XLEN-1:0] ResultWIF;                     // Custom instruction 
+  
+  
   logic [P.XLEN-1:0] IFResultW;                      // Result from either IEU or single-cycle FPU op writing an integer register
   logic [P.XLEN-1:0] IFCvtResultW;                   // Result from IEU, signle-cycle FPU op, or 2-cycle FCVT float to int 
   logic [P.XLEN-1:0] MulDivResultW;                  // Multiply always comes from MDU.  Divide could come from MDU or FPU (when using fdivsqrt for integer division)
 
-  logic [P.XLEN-1:0] MacResultE;
+  logic [P.XLEN-1:0] MacResultE;   // Custom instruction
+  logic [P.XLEN-1:0] MacResultM;   // Custom instruction
+  
+  logic [P.XLEN-1:0] MacResultW;   // Custom instruction
+  
   logic [P.XLEN-1:0] IEUmacResultE;
 
 
@@ -118,22 +128,31 @@ module datapath import cvw::*;  #(parameter cvw_t P) (
   alu   #(P)       alu(SrcAE, SrcBE, W64E, UW64E, SubArithE, ALUSelectE, BSelectE, ZBBSelectE, Funct3E, Funct7E, Rs2E, BALUControlE, BMUActiveE, CZeroE, ALUResultE, IEUAdrE);
   mux2  #(P.XLEN)  altresultmux(ImmExtE, PCLinkE, JumpE, AltResultE);
   mux2  #(P.XLEN)  ieuresultmux(ALUResultE, AltResultE, ALUResultSrcE, IEUmacResultE);
+  //IEUResultE);
   
   // Include the mac result
-   mux2  #(P.XLEN)  mac_resultmux( IEUmacResultE, MacResultE, mac_validE, IEUResultE);
+   mux2  #(P.XLEN)  mac_resultmux( IEUmacResultE, MacResultE, mac_validM, IEUResultE);
   // Mux to select the result based on MAC operation
   
   
-  // Custom MAC module
-  mac_unit   mac( .clk, .acc_rst(reset), .a(SrcAE), .b(SrcBE) ,.acc(MacResultE) , .valid(mac_validE));
+  // Custom MAC module - Instatiating mac_unti 
+  mac_unit   mac( .clk(clk), .acc_rst(reset), .valid(mac_validE),.a(SrcAE), .b(SrcBE) ,.acc(MacResultE));
 
   // Memory stage pipeline register
   flopenrc #(P.XLEN) SrcAMReg(clk, reset, FlushM, ~StallM, SrcAE, SrcAM);
   flopenrc #(P.XLEN) IEUResultMReg(clk, reset, FlushM, ~StallM, IEUResultE, IEUResultM);
   flopenrc #(P.XLEN) WriteDataMReg(clk, reset, FlushM, ~StallM, ForwardedSrcBE, WriteDataM); 
   
+  flopenrc #(P.XLEN) MacResultMReg(clk, reset, FlushM, ~StallM, MacResultE, MacResultM); // Custom instruction
+  // Custom instruction MUX to select the writeback value based on the mac_validW signal
+  
+  
+  
   // Writeback stage pipeline register and logic
   flopenrc #(P.XLEN) IFResultWReg(clk, reset, FlushW, ~StallW, IFResultM, IFResultW);
+  
+  // Custom Instruction
+   flopenrc #(P.XLEN) MacResultWReg(clk, reset, FlushW, ~StallW , MacResultM, MacResultW);  //Custom instruction
 
   // floating point inputs: FIntResM comes from fclass, fcmp, fmv; FCvtIntResW comes from fcvt
   if (P.F_SUPPORTED) begin:fpmux
@@ -150,6 +169,11 @@ module datapath import cvw::*;  #(parameter cvw_t P) (
     assign MulDivResultW = MDUResultW;
   end
   mux5  #(P.XLEN) resultmuxW(IFCvtResultW, ReadDataW, CSRReadValW, MulDivResultW, SCResultW, ResultSrcW, ResultW); 
+  
+ //Custom instructions
+ 
+ // mux2  #(P.XLEN)  macresultmux(ResultWIF, MacResultW, mac_validW, ResultW);
+ 
  
   // handle Store Conditional result if atomic extension supported
   if (P.ZALRSC_SUPPORTED) assign SCResultW = {{(P.XLEN-1){1'b0}}, SquashSCW};
